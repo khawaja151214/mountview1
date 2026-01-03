@@ -485,17 +485,50 @@ export default function FrontDesk() {
 
         <TabsContent value="history" className="mt-6">
           <Card><CardContent className="p-0">
-            <table className="w-full text-sm">
-              <thead className="bg-slate-50"><tr><th className="text-left p-4">Name</th><th className="text-left p-4">Room</th><th className="text-left p-4">Dates</th><th className="text-right p-4">Action</th></tr></thead>
-              <tbody>
-                {guestHistory.map((g: any) => (
-                  <tr key={g.id} className="border-t hover:bg-slate-50">
-                    <td className="p-4 font-bold">{g.name}</td><td className="p-4">{g.assignedRoom}</td><td className="p-4">{g.checkIn} - {g.checkOut}</td>
-                    <td className="p-4 text-right"><Button variant="ghost" size="sm" onClick={() => deleteFromHistory(g.id)}><XCircle className="h-4 w-4 text-red-500" /></Button></td>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead className="bg-slate-50">
+                  <tr>
+                    <th className="text-left p-4 whitespace-nowrap">Guest Name</th>
+                    <th className="text-left p-4 whitespace-nowrap">Room</th>
+                    <th className="text-left p-4 whitespace-nowrap">Check-in</th>
+                    <th className="text-left p-4 whitespace-nowrap">Check-out</th>
+                    <th className="text-left p-4 whitespace-nowrap">Mobile</th>
+                    <th className="text-left p-4 whitespace-nowrap">City</th>
+                    <th className="text-left p-4 whitespace-nowrap">CNIC</th>
+                    <th className="text-right p-4 whitespace-nowrap">Amount (PKR)</th>
+                    <th className="text-right p-4 whitespace-nowrap">Action</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {guestHistory.length === 0 ? (
+                    <tr>
+                      <td colSpan={9} className="text-center p-8 text-muted-foreground">
+                        No guest history available
+                      </td>
+                    </tr>
+                  ) : (
+                    guestHistory.map((g: any) => (
+                      <tr key={g.id} className="border-t hover:bg-slate-50">
+                        <td className="p-4 font-bold whitespace-nowrap">{g.name}</td>
+                        <td className="p-4 whitespace-nowrap">{g.assignedRoom}</td>
+                        <td className="p-4 whitespace-nowrap">{g.checkIn}</td>
+                        <td className="p-4 whitespace-nowrap">{g.checkOut}</td>
+                        <td className="p-4 whitespace-nowrap">{g.mobile || 'N/A'}</td>
+                        <td className="p-4 whitespace-nowrap">{g.city || 'N/A'}</td>
+                        <td className="p-4 whitespace-nowrap">{g.cnic || 'N/A'}</td>
+                        <td className="p-4 text-right font-semibold whitespace-nowrap">{g.total ? g.total.toLocaleString() : '0'}</td>
+                        <td className="p-4 text-right whitespace-nowrap">
+                          <Button variant="ghost" size="sm" onClick={() => deleteFromHistory(g.id)}>
+                            <XCircle className="h-4 w-4 text-red-500" />
+                          </Button>
+                        </td>
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
           </CardContent></Card>
         </TabsContent>
 

@@ -253,6 +253,7 @@ export default function FrontDesk() {
         </head>
         <body>
           <div class="header">
+            <div class="logo">⛰️</div>
             <div class="title">Mount View Hotel</div>
             <div class="address">College Road Skardu | WhatsApp: 0346 8484849</div>
           </div>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fix Vercel Error 127 - Mount View Hotel</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 36px;
+        }
+        .error-box {
+            background: #fee2e2;
+            border-left: 4px solid #dc2626;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        .success-box {
+            background: #dcfce7;
+            border-left: 4px solid #16a34a;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .step {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 12px;
+            position: relative;
+        }
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: #667eea;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        .step h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            padding-top: 10px;
+        }
+        .setting {
+            background: #1e293b;
+            color: #60a5fa;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            font-size: 14px;
+        }
+        .button {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 10px 10px 10px 0;
+            transition: all 0.3s;
+        }
+        .button:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        .warning {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        ul {
+            margin: 15px 0 15px 30px;
+        }
+        li {
+            margin: 8px 0;
+        }
+        .highlight {
+            background: #fef3c7;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        code {
+            background: #e0e7ff;
+            color: #4338ca;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #e2e8f0;
+            color: #64748b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 Fix Vercel Error 127</h1>
+        <p style="color: #64748b; margin-bottom: 30px;">Mount View Hotel Skardu - Deployment Guide</p>
+
+        <div class="error-box">
+            <strong>❌ Error:</strong><br>
+            /bin/sh: line 1: vite: command not found<br>
+            Error: Command "yarn run build" exited with 127
+        </div>
+
+        <div class="success-box">
+            <strong>✅ Solution Ready!</strong><br>
+            Follow the simple steps below to deploy successfully.
+        </div>
+
+        <h2 style="margin-top: 40px; color: #667eea;">📋 Deployment Steps</h2>
+
+        <div class="step">
+            <div class="step-number">1</div>
+            <h3>Delete Existing Project (If Any)</h3>
+            <p>If you already tried deploying:</p>
+            <ul>
+                <li>Go to Vercel Dashboard</li>
+                <li>Click on your project</li>
+                <li>Settings → Advanced → Delete Project</li>
+            </ul>
+            <p style="margin-top: 10px;"><strong>Why?</strong> Vercel caches old settings. Fresh start = clean slate.</p>
+        </div>
+
+        <div class="step">
+            <div class="step-number">2</div>
+            <h3>Import Fresh from GitHub</h3>
+            <a href="https://vercel.com/new" target="_blank" class="button">🚀 Go to Vercel</a>
+            <ul style="margin-top: 15px;">
+                <li>Click "Add New..." → "Project"</li>
+                <li>Select your GitHub repository</li>
+                <li>Click "Import"</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <div class="step-number">3</div>
+            <h3>Configure Settings (CRITICAL!)</h3>
+            <p>Set these EXACT values:</p>
+            
+            <div class="setting">
+Root Directory: <span style="color: #22c55e;">frontend</span>
+            </div>
+            
+            <div class="setting">
+Build Command: <span style="color: #22c55e;">npm run build</span>
+            </div>
+            
+            <div class="setting">
+Output Directory: <span style="color: #22c55e;">dist</span>
+            </div>
+            
+            <div class="setting">
+Install Command: <span style="color: #22c55e;">npm install</span>
+            </div>
+
+            <div class="warning">
+                <strong>⚠️ Most Important:</strong> The <span class="highlight">Root Directory</span> setting is critical. Set it to <code>frontend</code> first, then everything else will auto-detect.
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-number">4</div>
+            <h3>Deploy!</h3>
+            <p>Click the big <strong>"Deploy"</strong> button</p>
+            <p>Wait 2-3 minutes. You should see:</p>
+            <div class="setting">
+✓ Installing dependencies...<br>
+✓ added 204 packages in 15s<br>
+✓ Running build command...<br>
+✓ vite v7.3.0 building for production...<br>
+✓ 2219 modules transformed<br>
+✓ built in 6.40s<br>
+<span style="color: #22c55e;">✅ Deployment ready!</span>
+            </div>
+        </div>
+
+        <h2 style="margin-top: 40px; color: #667eea;">🎯 Why This Works</h2>
+        
+        <div style="background: #f1f5f9; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <p><strong>The Problem:</strong></p>
+            <ul>
+                <li>Vercel was trying to build from wrong directory</li>
+                <li>Using yarn instead of npm</li>
+                <li>Dependencies not installed before build</li>
+            </ul>
+            
+            <p style="margin-top: 15px;"><strong>The Solution:</strong></p>
+            <ul>
+                <li><code>Root Directory = frontend</code> tells Vercel where your app is</li>
+                <li><code>npm install</code> ensures vite is installed</li>
+                <li><code>npm run build</code> uses the correct package manager</li>
+            </ul>
+        </div>
+
+        <h2 style="margin-top: 40px; color: #667eea;">🆘 Still Not Working?</h2>
+
+        <p><strong>Try Netlify instead:</strong></p>
+        <a href="https://app.netlify.com" target="_blank" class="button" style="background: #00ad9f;">Try Netlify</a>
+        
+        <p style="margin-top: 15px;">Configure in Netlify:</p>
+        <div class="setting">
+Base directory: frontend<br>
+Build command: npm run build<br>
+Publish directory: frontend/dist
+        </div>
+
+        <div class="success-box" style="margin-top: 40px;">
+            <strong>✅ Your site will be live at:</strong><br>
+            <code>https://your-project.vercel.app</code> or <code>https://your-project.netlify.app</code>
+        </div>
+
+        <div class="footer">
+            <p><strong>Mount View Hotel Skardu</strong></p>
+            <p>For detailed documentation, see: <strong>VERCEL_FIX_127.md</strong></p>
+        </div>
+    </div>
+</body>
+</html>

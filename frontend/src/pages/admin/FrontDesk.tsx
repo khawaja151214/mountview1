@@ -223,7 +223,9 @@ export default function FrontDesk() {
       assignedRoom: room.number,
       checkIn: bookings.find(b => b.assignedRoom === room.number && b.status !== "Declined")?.checkIn || "N/A",
       checkOut: bookings.find(b => b.assignedRoom === room.number && b.status !== "Declined")?.checkOut || "N/A",
+      mobile: bookings.find(b => b.assignedRoom === room.number && b.status !== "Declined")?.mobile || bookings.find(b => b.assignedRoom === room.number && b.status !== "Declined")?.phone || "N/A",
       city: bookings.find(b => b.assignedRoom === room.number && b.status !== "Declined")?.city || "N/A",
+      cnic: bookings.find(b => b.assignedRoom === room.number && b.status !== "Declined")?.cnic || "N/A",
       total: netTotal,
       date: new Date().toISOString()
     };

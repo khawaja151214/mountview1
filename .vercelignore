@@ -1,0 +1,13 @@
+backend/
+backend_backup/
+frontend_backup/
+node_modules/
+.git/
+.env
+.env.*
+*.log
+.DS_Store
+verify-deployment.sh
+test_result.md
+tests/
+scripts/

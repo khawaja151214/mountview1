@@ -1,8 +1,8 @@
 {
-  "buildCommand": "yarn install --cwd frontend && yarn --cwd frontend build",
+  "buildCommand": "cd frontend && yarn install && yarn build",
   "outputDirectory": "frontend/dist",
+  "installCommand": null,
   "framework": null,
-  "installCommand": "echo 'Skipping root install'",
   "rewrites": [
     {
       "source": "/(.*)",

@@ -1,10 +1,20 @@
 import express, { type Request, Response, NextFunction } from "express";
+import cors from "cors";
 import { registerRoutes } from "./routes";
 import { serveStatic } from "./static";
 import { createServer } from "http";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 const httpServer = createServer(app);
+
+// CORS configuration
+app.use(cors({
+  origin: process.env.CORS_ORIGINS || "*",
+  credentials: true
+}));
 
 declare module "http" {
   interface IncomingMessage {

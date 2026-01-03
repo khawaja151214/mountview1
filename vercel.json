@@ -1,6 +1,0 @@
-{
-  "buildCommand": "yarn workspace mountview-frontend build",
-  "devCommand": "yarn workspace mountview-frontend dev",
-  "installCommand": "yarn install",
-  "outputDirectory": "frontend/dist"
-}

@@ -61,9 +61,14 @@ export default function FrontDesk() {
       setRooms(JSON.parse(storedRooms));
     } else {
       const initialRooms = [
-        ...Array.from({ length: 14 }, (_, i) => ({ id: `1-${101+i}`, number: `MV ${101+i}`, floor: "1st Floor", type: "Standard", status: "Available", price: 5000 })),
-        ...Array.from({ length: 11 }, (_, i) => ({ id: `2-${201+i}`, number: `MV ${201+i}`, floor: "2nd Floor", type: "Deluxe", status: "Available", price: 7000 })),
-        { id: "top-401", number: "King 401", floor: "Top Floor", type: "Executive Suite", status: "Available", price: 15000 }
+        // 1st Floor - MV 101-107 (Standard), MV 108-114 (Deluxe)
+        ...Array.from({ length: 7 }, (_, i) => ({ id: `1-${101+i}`, number: `MV ${101+i}`, floor: "1st Floor", type: "Standard", status: "Available", price: 4000 })),
+        ...Array.from({ length: 7 }, (_, i) => ({ id: `1-${108+i}`, number: `MV ${108+i}`, floor: "1st Floor", type: "Deluxe", status: "Available", price: 6000 })),
+        // 2nd Floor - MV 201-206 (Executive), MV 207-211 (Family Suite)
+        ...Array.from({ length: 6 }, (_, i) => ({ id: `2-${201+i}`, number: `MV ${201+i}`, floor: "2nd Floor", type: "Executive", status: "Available", price: 7000 })),
+        ...Array.from({ length: 5 }, (_, i) => ({ id: `2-${207+i}`, number: `MV ${207+i}`, floor: "2nd Floor", type: "Family Suite", status: "Available", price: 10000 })),
+        // Top Floor - King 401
+        { id: "top-401", number: "King 401", floor: "Top Floor", type: "King Room", status: "Available", price: 15000 }
       ];
       setRooms(initialRooms);
       localStorage.setItem("mv_rooms", JSON.stringify(initialRooms));

@@ -240,6 +240,7 @@ export default function FrontDesk() {
           <style>
             body { font-family: 'Segoe UI', sans-serif; padding: 40px; color: #333; }
             .header { text-align: center; border-bottom: 2px solid #333; padding-bottom: 20px; margin-bottom: 30px; }
+            .logo { font-size: 48px; margin-bottom: 10px; }
             .title { font-size: 28px; font-weight: bold; text-transform: uppercase; margin: 5px 0; }
             .invoice-details { display: flex; justify-content: space-between; margin-bottom: 40px; background: #f9f9f9; padding: 20px; border-radius: 8px; }
             table { width: 100%; border-collapse: collapse; margin-bottom: 40px; }

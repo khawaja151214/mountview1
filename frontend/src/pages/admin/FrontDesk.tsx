@@ -147,22 +147,45 @@ export default function FrontDesk() {
   };
 
   const printToken = (booking: any) => {
+    // Get Wi-Fi password for the floor
+    let wifiPassword = "";
+    if (booking.assignedRoom.includes("101") || booking.assignedRoom.includes("102") || booking.assignedRoom.includes("103") || 
+        booking.assignedRoom.includes("104") || booking.assignedRoom.includes("105") || booking.assignedRoom.includes("106") || 
+        booking.assignedRoom.includes("107") || booking.assignedRoom.includes("108") || booking.assignedRoom.includes("109") ||
+        booking.assignedRoom.includes("110") || booking.assignedRoom.includes("111") || booking.assignedRoom.includes("112") ||
+        booking.assignedRoom.includes("113") || booking.assignedRoom.includes("114")) {
+      wifiPassword = wifiSettings.floor1;
+    } else if (booking.assignedRoom.includes("201") || booking.assignedRoom.includes("202") || booking.assignedRoom.includes("203") ||
+               booking.assignedRoom.includes("204") || booking.assignedRoom.includes("205") || booking.assignedRoom.includes("206") ||
+               booking.assignedRoom.includes("207") || booking.assignedRoom.includes("208") || booking.assignedRoom.includes("209") ||
+               booking.assignedRoom.includes("210") || booking.assignedRoom.includes("211")) {
+      wifiPassword = wifiSettings.floor2;
+    } else if (booking.assignedRoom.includes("401")) {
+      wifiPassword = wifiSettings.top;
+    }
+
     const win = window.open('', '_blank');
     if (!win) return;
     win.document.write(`
       <html>
         <head>
           <style>
-            body { font-family: monospace; padding: 20px; width: 300px; }
-            .header { text-align: center; border-bottom: 1px dashed #000; padding-bottom: 10px; margin-bottom: 10px; }
-            .row { display: flex; justify-content: space-between; margin: 5px 0; font-size: 14px; }
+            body { font-family: monospace; padding: 20px; width: 350px; }
+            .header { text-align: center; border-bottom: 2px dashed #000; padding-bottom: 15px; margin-bottom: 15px; }
+            .logo { font-size: 40px; margin-bottom: 5px; }
+            .hotel-name { font-size: 20px; font-weight: bold; margin: 5px 0; }
+            .row { display: flex; justify-content: space-between; margin: 8px 0; font-size: 14px; }
             .bold { font-weight: bold; }
-            .footer { text-align: center; margin-top: 20px; font-size: 12px; border-top: 1px dashed #000; padding-top: 10px; }
+            .wifi-section { background: #f0f0f0; padding: 10px; margin: 15px 0; border: 1px dashed #333; border-radius: 5px; }
+            .wifi-title { font-weight: bold; text-align: center; margin-bottom: 5px; }
+            .wifi-password { text-align: center; font-size: 18px; font-weight: bold; letter-spacing: 2px; }
+            .footer { text-align: center; margin-top: 20px; font-size: 12px; border-top: 2px dashed #000; padding-top: 10px; }
           </style>
         </head>
         <body>
           <div class="header">
-            <h2 style="margin:0">MOUNT VIEW HOTEL</h2>
+            <div class="logo">⛰️</div>
+            <div class="hotel-name">MOUNT VIEW HOTEL</div>
             <small>College Road Skardu</small><br/>
             <strong>RESERVATION TOKEN</strong>
           </div>
@@ -172,6 +195,12 @@ export default function FrontDesk() {
           <div class="row"><span class="bold">Check-out:</span> <span>${booking.checkOut}</span></div>
           <div class="row"><span class="bold">CNIC:</span> <span>${booking.cnic || 'N/A'}</span></div>
           <div class="row"><span class="bold">Advance:</span> <span>PKR ${booking.advance || '0'}</span></div>
+          ${wifiPassword ? `
+          <div class="wifi-section">
+            <div class="wifi-title">📶 Wi-Fi Password</div>
+            <div class="wifi-password">${wifiPassword}</div>
+          </div>
+          ` : ''}
           <div class="footer">
             Welcome to Skardu!<br/>
             WhatsApp: 0346 8484849

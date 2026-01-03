@@ -280,7 +280,7 @@ export default function FrontDesk() {
           </div>
           <div style="clear: both; margin-top: 50px; text-align: center; color: #999;">
             <strong>⛰️ Mount View Hotel Skardu</strong><br/>
-            "Thank you for staying with us!"”
+            "Thank you for staying with us!"
           </div>
         </body>
       </html>

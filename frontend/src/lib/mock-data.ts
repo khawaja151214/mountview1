@@ -24,7 +24,7 @@ const deluxeRoomImg = "/attached_assets/2a1dc8c8-4aa8-4de5-9c1d-2da88889250c_176
 const stdRoomImg = "/attached_assets/2a1dc8c8-4aa8-4de5-9c1d-2da88889250c_1767264342786_1767430882670.jpeg";
 import suiteRoomImg from "@assets/IMG_5537_1767192232998_1767430705649.jpeg";
 import familySuiteImg from "@assets/93d95d20-db74-4f5b-bb7c-96fa23570315_1767264342786_1767430802894.jpeg";
-const homeSecImageImg = "/attached_assets/376f90e6-0491-4f5b-8858-d023c9878861_1767264342786_1767430802895.jpeg";
+const homeSecImageImg = "/attached_assets/interior-room.jpeg";
 import heroImageImg from "@assets/IMG_5559_1767339383873_1767431374218.jpeg";
 
 export interface Room {

@@ -73,6 +73,12 @@ agenthub/agents/youtube/db
 *.deb
 *.dylib
 
+# Backup directories
+*_backup/
+backend_backup/
+frontend_backup/
+Mountviewskarduzip/
+
 # Build caches
 .cache/
 

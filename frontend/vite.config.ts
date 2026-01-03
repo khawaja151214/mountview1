@@ -27,6 +27,11 @@ export default defineConfig({
   server: {
     host: "0.0.0.0",
     port: 3000,
+    allowedHosts: [
+      'portal-hub-6.preview.emergentagent.com',
+      'localhost',
+      '.emergentagent.com'
+    ],
     proxy: {
       '/api': {
         target: 'http://localhost:8001',

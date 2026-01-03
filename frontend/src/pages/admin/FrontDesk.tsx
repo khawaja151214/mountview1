@@ -279,7 +279,8 @@ export default function FrontDesk() {
             <div class="grand-total"><span>NET TOTAL:</span><span>PKR ${netTotal.toLocaleString()}</span></div>
           </div>
           <div style="clear: both; margin-top: 50px; text-align: center; color: #999;">
-            “Thank you for staying at Mount View Hotel Skardu!”
+            “            <strong>⛰️ Mount View Hotel Skardu</strong><br/>
+            "Thank you for staying with us!"”
           </div>
         </body>
       </html>

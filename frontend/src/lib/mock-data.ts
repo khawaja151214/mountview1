@@ -59,7 +59,7 @@ export const rooms: Room[] = [
     seoDescription: "Affordable family room in Skardu city center. Ideal for budget travelers, families, and groups visiting Skardu. Conveniently located near Skardu airport and city attractions.",
     capacity: "2-3 Guests (Family Suitable)",
     amenities: ["Free Wi-Fi", "Hot Water", "Basic TV", "City View", "Free Parking"],
-    image: stdRoomImg,
+    image: "/gallery/room-mountain-view.jpeg",
     imageAlt: "budget family room in Skardu city with mountain views",
   })),
   // 1st Floor - Deluxe Rooms (MV 108-114) - Family & Group
@@ -93,7 +93,7 @@ export const rooms: Room[] = [
     seoDescription: "Executive hotel room in Skardu city center with Karakoram views. Ideal for couples, corporate stays, and travelers seeking comfort. Located near Skardu Bazar and airport with modern amenities.",
     capacity: "2 Guests (Couple/Corporate)",
     amenities: ["King Bed", "Living Area", "Premium Wi-Fi", "Mountain View", "Work Desk", "Mini Fridge"],
-    image: execRoom1Img,
+    image: stdRoomImg,
     imageAlt: "executive hotel room Skardu city with Karakoram mountain views",
   })),
   // 2nd Floor - Family Suites (MV 207-211) - Large Families & Groups

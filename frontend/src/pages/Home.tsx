@@ -317,7 +317,6 @@ export default function Home() {
                 {[
                   { place: "Skardu Airport", time: "10 minutes", desc: "Convenient airport transfers" },
                   { place: "Skardu City Center & Bazar", time: "5 minutes", desc: "Shopping and local culture" },
-                  { place: "Eidgah Ground", time: "Walking distance", desc: "Local events and gatherings" },
                   { place: "Deosai National Park", time: "1.5 hours", desc: "Land of Giants" },
                   { place: "Kachura Lake (Shangri-La)", time: "30 minutes", desc: "Paradise on Earth" },
                   { place: "Satpara Lake", time: "20 minutes", desc: "Crystal clear waters" },

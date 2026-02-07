@@ -2,6 +2,7 @@ import { hotelInfo, rooms, destinations } from "@/lib/mock-data";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
+import React from "react";
 import { 
   ArrowRight, Wifi, Coffee, Mountain, Car, Shield, Heart, 
   MapPin, Phone, MessageCircle, Star, Check, Users, Utensils,

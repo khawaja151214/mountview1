@@ -7,7 +7,7 @@ import { Link } from "wouter";
 
 export default function Rooms() {
   // Group rooms by type to avoid listing every single room number
-  const uniqueRoomTypes = ["Deluxe", "Executive", "Suite"];
+  const uniqueRoomTypes = ["Standard", "Deluxe", "Executive", "Family Suite", "King Room"];
   
   const displayRooms = uniqueRoomTypes.map(type => 
     rooms.find(r => r.type === type)

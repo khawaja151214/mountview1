@@ -297,6 +297,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Premium Photo Gallery */}
+      <PremiumGallery />
+
       {/* Location Advantage - Tourism Focus */}
       <section className="py-24 bg-white">
         <div className="container max-w-7xl px-6">

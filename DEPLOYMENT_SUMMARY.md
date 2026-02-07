@@ -67,7 +67,7 @@ All services running via supervisor:
 - **Location**: `/app/frontend/`
 - **Environment**: `/app/frontend/.env`
   ```
-  VITE_API_URL=https://portal-hub-6.preview.emergentagent.com/api
+  VITE_API_URL=https://alpine-resort-hub.preview.emergentagent.com/api
   ```
 - **Proxy**: Configured in vite.config.ts to forward /api requests to backend
 
@@ -158,8 +158,8 @@ curl -I http://localhost:3000/
 
 ## Important URLs
 
-- **Frontend**: https://portal-hub-6.preview.emergentagent.com
-- **Backend API**: https://portal-hub-6.preview.emergentagent.com/api
+- **Frontend**: https://alpine-resort-hub.preview.emergentagent.com
+- **Backend API**: https://alpine-resort-hub.preview.emergentagent.com/api
 - **WhatsApp**: +92 346 8484849
 - **Email**: info@mountviewskardu.com
 

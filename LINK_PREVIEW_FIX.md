@@ -24,7 +24,7 @@ Changed from absolute URL to relative URL:
 ```
 
 This allows the image to work on any domain:
-- Current preview URL: `https://portal-hub-6.preview.emergentagent.com`
+- Current preview URL: `https://alpine-resort-hub.preview.emergentagent.com`
 - Future production URL: `https://www.mountviewskardu.com`
 - Vercel URL: `https://your-project.vercel.app`
 
@@ -155,7 +155,7 @@ If you still see the old error:
 ## Deployment Note
 
 When you deploy to Vercel/Netlify, the preview will automatically show:
-- **Current**: `https://portal-hub-6.preview.emergentagent.com/opengraph.jpg`
+- **Current**: `https://alpine-resort-hub.preview.emergentagent.com/opengraph.jpg`
 - **Vercel**: `https://your-project.vercel.app/opengraph.jpg`
 - **Production**: `https://www.mountviewskardu.com/opengraph.jpg`
 

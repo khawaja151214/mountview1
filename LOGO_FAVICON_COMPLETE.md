@@ -114,7 +114,7 @@ site.webmanifest       873 bytes
 ## Testing Your Logo
 
 ### Method 1: Browser Tab
-1. Open: https://portal-hub-6.preview.emergentagent.com
+1. Open: https://alpine-resort-hub.preview.emergentagent.com
 2. Look at browser tab
 3. See Mount View logo (⛰️ MV)
 

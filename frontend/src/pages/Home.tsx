@@ -9,6 +9,7 @@ import {
   Clock, Award, TrendingUp, Home as HomeIcon, Sparkles
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import PremiumGallery from "@/components/PremiumGallery";
 
 export default function Home() {
   const fadeInUp = {

@@ -30,51 +30,105 @@ import heroImageImg from "@assets/IMG_5559_1767339383873_1767431374218.jpeg";
 export interface Room {
   id: string;
   number: string;
+  seoName: string; // SEO-optimized room name
+  seoUrl: string; // SEO-friendly URL slug
   type: "Standard" | "Deluxe" | "Executive" | "Family Suite" | "King Room";
   price: number;
   status: "Available" | "Booked" | "Occupied";
   floor: "1st Floor" | "2nd Floor" | "Top Floor";
   description: string;
+  seoDescription: string; // Enhanced SEO description
+  capacity: string; // Guest capacity
   amenities: string[];
   image: string;
+  imageAlt: string; // SEO alt text
 }
 
 export const rooms: Room[] = [
-  // 1st Floor - 14 Rooms (MV 101 - MV 114)
-  ...Array.from({ length: 14 }, (_, i) => ({
+  // 1st Floor - Standard Rooms (MV 101-107) - Budget & Family Friendly
+  ...Array.from({ length: 7 }, (_, i) => ({
     id: `mv-10${i + 1}`,
     number: `MV ${101 + i}`,
-    type: (101 + i) <= 107 ? "Standard" : "Deluxe" as any,
-    price: (101 + i) <= 107 ? 4000 : 6000,
+    seoName: `Skardu City View Budget Room ${101 + i}`,
+    seoUrl: `skardu-city-view-budget-room-${101 + i}`,
+    type: "Standard" as const,
+    price: 4000,
     status: "Available" as const,
     floor: "1st Floor" as const,
-    description: "Elegant room with essential amenities and mountain views.",
-    amenities: ["Free Wi-Fi", "Hot Water", "Basic TV"],
-    image: (101 + i) <= 107 ? room1Img : room2Img,
+    description: "Comfortable budget-friendly room perfect for families visiting Skardu city.",
+    seoDescription: "Affordable family room in Skardu city center. Ideal for budget travelers, families, and groups visiting Skardu. Conveniently located near Skardu airport and city attractions.",
+    capacity: "2-3 Guests (Family Suitable)",
+    amenities: ["Free Wi-Fi", "Hot Water", "Basic TV", "City View", "Free Parking"],
+    image: stdRoomImg,
+    imageAlt: "budget family room in Skardu city with mountain views",
   })),
-  // 2nd Floor - 11 Rooms (MV 201 - MV 211)
-  ...Array.from({ length: 11 }, (_, i) => ({
+  // 1st Floor - Deluxe Rooms (MV 108-114) - Family & Group
+  ...Array.from({ length: 7 }, (_, i) => ({
+    id: `mv-10${i + 8}`,
+    number: `MV ${108 + i}`,
+    seoName: `Skardu Family Deluxe Room ${108 + i}`,
+    seoUrl: `skardu-family-deluxe-room-${108 + i}`,
+    type: "Deluxe" as const,
+    price: 6000,
+    status: "Available" as const,
+    floor: "1st Floor" as const,
+    description: "Spacious room ideal for families and groups visiting Skardu.",
+    seoDescription: "Family-friendly deluxe room in Skardu city. Perfect for families, couples, and small groups. Near Skardu airport with easy access to tourist destinations. Includes free parking and Wi-Fi.",
+    capacity: "3-4 Guests (Family/Group)",
+    amenities: ["Free Wi-Fi", "Hot Water", "LED TV", "Mountain View", "Free Parking", "Room Service"],
+    image: deluxeRoomImg,
+    imageAlt: "family accommodation deluxe room near Skardu airport",
+  })),
+  // 2nd Floor - Executive Rooms (MV 201-206) - Corporate & Couples
+  ...Array.from({ length: 6 }, (_, i) => ({
     id: `mv-20${i + 1}`,
     number: `MV ${201 + i}`,
-    type: (201 + i) <= 206 ? "Executive" : "Family Suite" as any,
-    price: (201 + i) <= 206 ? 7000 : 10000,
+    seoName: `Skardu Central Executive Room ${201 + i}`,
+    seoUrl: `skardu-central-executive-room-${201 + i}`,
+    type: "Executive" as const,
+    price: 7000,
     status: "Available" as const,
     floor: "2nd Floor" as const,
-    description: "Spacious room with premium comfort and mountain vistas.",
-    amenities: ["King Bed", "Living Area", "Free Wi-Fi", "Mountain View"],
-    image: (201 + i) <= 206 ? room1Img : familySuiteImg,
+    description: "Executive room with Karakoram mountain views, perfect for couples and business travelers.",
+    seoDescription: "Executive hotel room in Skardu city center with Karakoram views. Ideal for couples, corporate stays, and travelers seeking comfort. Located near Skardu Bazar and airport with modern amenities.",
+    capacity: "2 Guests (Couple/Corporate)",
+    amenities: ["King Bed", "Living Area", "Premium Wi-Fi", "Mountain View", "Work Desk", "Mini Fridge"],
+    image: execRoom1Img,
+    imageAlt: "executive hotel room Skardu city with Karakoram mountain views",
   })),
-  // Top Floor - King Room
+  // 2nd Floor - Family Suites (MV 207-211) - Large Families & Groups
+  ...Array.from({ length: 5 }, (_, i) => ({
+    id: `mv-20${i + 7}`,
+    number: `MV ${207 + i}`,
+    seoName: `Karakoram View Family Suite ${207 + i}`,
+    seoUrl: `karakoram-view-family-suite-${207 + i}`,
+    type: "Family Suite" as const,
+    price: 10000,
+    status: "Available" as const,
+    floor: "2nd Floor" as const,
+    description: "Spacious family suite with stunning Karakoram views, perfect for large families and groups.",
+    seoDescription: "Spacious family suite in Skardu with panoramic Karakoram mountain views. Perfect for large families, groups, and friends traveling to Skardu. Near major tourist destinations with parking and dining facilities.",
+    capacity: "4-6 Guests (Large Family/Group)",
+    amenities: ["Multiple Beds", "Living Area", "Premium Wi-Fi", "Karakoram View", "Family Dining Area", "Extra Space"],
+    image: familySuiteImg,
+    imageAlt: "family suite accommodation Skardu with Karakoram mountain views",
+  })),
+  // Top Floor - King Suite (401) - Special Couples & Families
   {
     id: "mv-401",
     number: "King 401",
+    seoName: "Skardu Valley View King Suite 401",
+    seoUrl: "skardu-valley-view-king-suite",
     type: "King Room",
     price: 15000,
     status: "Available",
     floor: "Top Floor",
-    description: "Exclusive top-floor suite with panoramic views of the Skardu valley.",
-    amenities: ["King Bed", "Private Terrace", "Premium Wi-Fi", "Luxury Bath"],
+    description: "Top-floor king suite with panoramic Skardu valley and mountain views.",
+    seoDescription: "Exclusive top-floor king suite in Skardu with 360-degree valley and mountain views. Ideal for special occasions, honeymoons, and travelers seeking the best views in Skardu city. Features private terrace and premium amenities.",
+    capacity: "2-4 Guests (Couple/Small Family)",
+    amenities: ["King Bed", "Private Terrace", "Premium Wi-Fi", "Panoramic Valley View", "Luxury Bath", "Premium Service"],
     image: suiteRoomImg,
+    imageAlt: "king suite Skardu with panoramic valley and mountain views",
   }
 ];
 

@@ -1,318 +1,357 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
-import { X, ChevronLeft, ChevronRight, MapPin, Users, Bed, Sparkles } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { useState, useCallback } from "react";
+import { X, ChevronLeft, ChevronRight, MapPin, Users, Bed, Utensils, Building, Eye } from "lucide-react";
 
-// Premium Gallery Data with SEO-optimized content
-const galleryData = {
-  rooms: [
-    {
-      id: "room-104-103",
-      image: "/attached_assets/room-104-103.jpeg",
-      title: "Deluxe Room 104 & 103",
-      subtitle: "First Floor | Skardu City View",
-      description: "Spacious and clean deluxe rooms with modern amenities, perfect for families visiting Skardu. Features comfortable bedding, mountain views, and premium facilities.",
-      capacity: "2-4 Guests",
-      amenities: ["Free Wi-Fi", "Hot Water", "LED TV", "Mountain View"],
-      seoAlt: "Deluxe family room in Mount View Hotel Skardu with city views",
-      category: "Deluxe Rooms"
-    },
-    {
-      id: "room-201-202",
-      image: "/attached_assets/room-201-202.jpeg",
-      title: "Executive Room 201 & 202",
-      subtitle: "Second Floor | Karakoram View",
-      description: "Premium executive rooms with stunning Karakoram mountain views. Ideal for couples and business travelers seeking comfort and scenic beauty in Skardu.",
-      capacity: "2 Guests",
-      amenities: ["King Bed", "Premium Wi-Fi", "Work Desk", "Valley View"],
-      seoAlt: "Executive hotel room in Skardu with Karakoram mountain views",
-      category: "Executive Rooms"
-    },
-    {
-      id: "room-207-209",
-      image: "/attached_assets/room-207-209.jpeg",
-      title: "Family Suite 207 & 209",
-      subtitle: "Second Floor | Panoramic Views",
-      description: "Luxurious family suites offering panoramic mountain vistas and extra space for large families or groups traveling to Skardu's tourist destinations.",
-      capacity: "4-6 Guests",
-      amenities: ["Multiple Beds", "Living Area", "Family Dining", "Premium View"],
-      seoAlt: "Family suite accommodation in Skardu hotel near tourist spots",
-      category: "Family Suites"
-    }
-  ],
-  facilities: [
-    {
-      id: "lobby",
-      image: "/attached_assets/lobby-restaurant.jpeg",
-      title: "Hotel Lobby & Restaurant",
-      subtitle: "Warm Welcome | Authentic Dining",
-      description: "Elegant lobby with 24/7 reception and in-house restaurant serving authentic Skardu and Pakistani cuisine. Clean, comfortable, and family-friendly environment.",
-      features: ["24/7 Reception", "In-house Restaurant", "Complimentary Tea"],
-      seoAlt: "Mount View Hotel Skardu lobby and restaurant area with traditional dining",
-      category: "Dining & Reception"
-    },
-    {
-      id: "washroom",
-      image: "/attached_assets/washroom.jpeg",
-      title: "Premium Washrooms",
-      subtitle: "Clean & Modern",
-      description: "Spotlessly clean, modern washrooms with hot water facilities and premium fixtures. Maintained to the highest hygiene standards for guest comfort.",
-      features: ["Hot Water 24/7", "Modern Fixtures", "Daily Cleaning"],
-      seoAlt: "Clean and modern washroom facilities in best hotel in Skardu",
-      category: "Facilities"
-    }
-  ]
+interface GalleryItem {
+  id: string;
+  image: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  seoAlt: string;
+  category: "room" | "facility";
+  tags?: string[];
+}
+
+const galleryItems: GalleryItem[] = [
+  {
+    id: "front-elevation",
+    image: "/gallery/front-elevation.jpeg",
+    title: "Mount View Hotel Skardu",
+    subtitle: "Hotel Exterior with Rooftop View Point",
+    description: "The grand front elevation of Mount View Hotel Skardu featuring a rooftop view point, in-house restaurant, and ample car parking. Centrally located near Skardu Airport and city attractions.",
+    seoAlt: "Mount View Hotel Skardu front elevation exterior view best hotel in Skardu with rooftop view point and car parking",
+    category: "facility",
+    tags: ["View Point", "Restaurant", "Car Parking"],
+  },
+  {
+    id: "room-103-104",
+    image: "/gallery/room-mountain-view.jpeg",
+    title: "Room 103 & 104",
+    subtitle: "Mountain View Rooms with Balcony Access",
+    description: "Spacious rooms with breathtaking Karakoram mountain views through large sliding glass doors. Furnished with comfortable bedding and cozy seating for a relaxing stay in Skardu.",
+    seoAlt: "Clean comfortable Room 103 104 Mount View Hotel Skardu with mountain views and balcony family-friendly hotel",
+    category: "room",
+    tags: ["Mountain View", "Balcony", "King Bed"],
+  },
+  {
+    id: "room-114",
+    image: "/gallery/lobby.jpeg",
+    title: "Room 114 - Family Suite",
+    subtitle: "Spacious Group Accommodation",
+    description: "Extra-spacious family suite designed for larger groups and families. Multiple beds with a comfortable living area, ideal for families visiting Skardu's tourist destinations together.",
+    seoAlt: "Family suite Room 114 Mount View Hotel Skardu spacious group accommodation best family-friendly hotel Skardu",
+    category: "room",
+    tags: ["Family Room", "Multiple Beds", "Spacious"],
+  },
+  {
+    id: "room-201-202",
+    image: "/gallery/room-elegant.jpeg",
+    title: "Room 201 & 202",
+    subtitle: "Executive Rooms with Scenic Garden Views",
+    description: "Elegantly furnished executive rooms featuring plush velvet seating, premium bedding with decorative runners, and natural light flooding through large windows overlooking lush greenery.",
+    seoAlt: "Executive Room 201 202 Mount View Hotel Skardu elegant furnished room with scenic views clean comfortable rooms",
+    category: "room",
+    tags: ["Executive", "Garden View", "Premium"],
+  },
+  {
+    id: "room-207-209",
+    image: "/gallery/room-scenic.jpeg",
+    title: "Room 207 & 209",
+    subtitle: "Panoramic Mountain View Suites",
+    description: "Serene suites on the second floor with panoramic views of Skardu's pine forests and mountain ridges. Wooden flooring and designer ceilings create a warm, luxurious ambiance.",
+    seoAlt: "Room 207 209 Mount View Hotel Skardu panoramic mountain view suite clean modern rooms in best hotel Skardu",
+    category: "room",
+    tags: ["Panoramic View", "Wood Floor", "Designer Ceiling"],
+  },
+  {
+    id: "restaurant",
+    image: "/gallery/restaurant.jpeg",
+    title: "In-House Restaurant",
+    subtitle: "24/7 Authentic Cuisine & Sky Dining",
+    description: "Our elegant restaurant with polished wooden floors and designer ceiling serves authentic Pakistani and Skardu cuisine around the clock. Enjoy sky dining on the rooftop with mountain views.",
+    seoAlt: "Mount View Hotel Skardu restaurant 24/7 dining authentic cuisine sky dining clean family-friendly restaurant",
+    category: "facility",
+    tags: ["24/7 Service", "Sky Dining", "Authentic Cuisine"],
+  },
+];
+
+const fadeIn = {
+  initial: { opacity: 0, y: 40 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+  transition: { duration: 0.6 },
 };
 
 export default function PremiumGallery() {
-  const [selectedImage, setSelectedImage] = useState<any>(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const allImages = [...galleryData.rooms, ...galleryData.facilities];
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
-  const openLightbox = (image: any, index: number) => {
-    setSelectedImage(image);
-    setCurrentIndex(index);
-  };
+  const openLightbox = useCallback((index: number) => setLightboxIndex(index), []);
+  const closeLightbox = useCallback(() => setLightboxIndex(null), []);
 
-  const closeLightbox = () => {
-    setSelectedImage(null);
-  };
+  const navigate = useCallback(
+    (dir: 1 | -1) =>
+      setLightboxIndex((prev) =>
+        prev !== null ? (prev + dir + galleryItems.length) % galleryItems.length : null
+      ),
+    []
+  );
 
-  const navigateImage = (direction: 'prev' | 'next') => {
-    const newIndex = direction === 'prev' 
-      ? (currentIndex - 1 + allImages.length) % allImages.length
-      : (currentIndex + 1) % allImages.length;
-    setCurrentIndex(newIndex);
-    setSelectedImage(allImages[newIndex]);
-  };
-
-  const fadeInUp = {
-    initial: { opacity: 0, y: 60 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true },
-    transition: { duration: 0.6 }
-  };
+  const rooms = galleryItems.filter((i) => i.category === "room");
+  const facilities = galleryItems.filter((i) => i.category === "facility");
 
   return (
-    <div className="py-24 bg-gradient-to-b from-white via-slate-50 to-white">
+    <section className="py-24 bg-gradient-to-b from-slate-50 via-white to-slate-50" data-testid="premium-gallery-section">
       <div className="container max-w-7xl px-6">
-        
         {/* Section Header */}
-        <motion.div {...fadeInUp} className="text-center mb-16 space-y-4">
-          <span className="inline-block text-amber-600 font-semibold tracking-wider text-sm uppercase">Photo Gallery</span>
+        <motion.div {...fadeIn} className="text-center mb-16 space-y-4">
+          <span className="inline-block text-amber-600 font-semibold tracking-wider text-sm uppercase">
+            Photo Gallery
+          </span>
           <h2 className="font-serif text-4xl md:text-5xl font-bold text-slate-900">
-            Discover Our Premium Accommodations
+            Explore Mount View Hotel
           </h2>
           <p className="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
-            Explore our clean, comfortable rooms and modern facilities at Mount View Hotel Skardu - 
-            your perfect base for discovering the beauty of Gilgit-Baltistan
+            Take a visual tour of our clean, comfortable rooms and modern facilities
+            &mdash; your perfect base for discovering Skardu and Gilgit-Baltistan
           </p>
         </motion.div>
 
-        {/* Rooms Showcase */}
-        <motion.div {...fadeInUp} className="mb-20">
-          <div className="flex items-center gap-3 mb-8">
-            <Bed className="w-6 h-6 text-amber-600" />
-            <h3 className="font-serif text-3xl font-bold text-slate-900">Our Rooms</h3>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            {galleryData.rooms.map((room, index) => (
-              <motion.div
-                key={room.id}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group cursor-pointer"
-                onClick={() => openLightbox(room, index)}
-              >
-                <Card className="overflow-hidden border-2 hover:border-amber-200 hover:shadow-2xl transition-all duration-500">
-                  <div className="relative h-72 overflow-hidden">
-                    <img 
-                      src={room.image}
-                      alt={room.seoAlt}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    
-                    {/* Category Badge */}
-                    <div className="absolute top-4 left-4 px-4 py-2 rounded-full bg-white/90 backdrop-blur-sm">
-                      <span className="text-sm font-bold text-slate-900">{room.category}</span>
-                    </div>
-                    
-                    {/* Hover Overlay */}
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className="text-white text-center">
-                        <Sparkles className="w-12 h-12 mx-auto mb-2" />
-                        <p className="text-sm font-medium">Click to view details</p>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <CardContent className="p-6 space-y-4">
-                    <div>
-                      <h4 className="font-serif text-xl font-bold text-slate-900 mb-1">{room.title}</h4>
-                      <p className="text-sm text-amber-600 font-medium flex items-center gap-2">
-                        <MapPin className="w-4 h-4" />
-                        {room.subtitle}
-                      </p>
-                    </div>
-                    
-                    <p className="text-slate-600 text-sm leading-relaxed line-clamp-3">
-                      {room.description}
-                    </p>
-                    
-                    <div className="flex items-center justify-between pt-4 border-t border-slate-100">
-                      <div className="flex items-center gap-2 text-sm text-slate-600">
-                        <Users className="w-4 h-4" />
-                        <span>{room.capacity}</span>
-                      </div>
-                      <div className="flex gap-2">
-                        {room.amenities.slice(0, 2).map((amenity, i) => (
-                          <span key={i} className="text-xs px-2 py-1 rounded-full bg-amber-50 text-amber-700">
-                            {amenity}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+        {/* Hotel Exterior - Full Width Hero */}
+        <motion.div {...fadeIn} className="mb-16">
+          <div
+            className="group relative rounded-2xl overflow-hidden cursor-pointer shadow-xl hover:shadow-2xl transition-shadow duration-500"
+            onClick={() => openLightbox(0)}
+            data-testid="gallery-front-elevation"
+          >
+            <div className="aspect-[21/9] sm:aspect-[21/8]">
+              <img
+                src={facilities[0].image}
+                alt={facilities[0].seoAlt}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                loading="lazy"
+              />
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-10">
+              <div className="flex flex-wrap gap-2 mb-3">
+                {facilities[0].tags?.map((tag) => (
+                  <span
+                    key={tag}
+                    className="text-xs px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm text-white font-medium"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white mb-1">
+                {facilities[0].title}
+              </h3>
+              <p className="text-white/80 text-sm sm:text-base max-w-xl">
+                {facilities[0].subtitle}
+              </p>
+            </div>
+            <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <Eye className="w-5 h-5" />
+            </div>
           </div>
         </motion.div>
 
-        {/* Facilities Showcase */}
-        <motion.div {...fadeInUp}>
+        {/* Rooms Grid */}
+        <motion.div {...fadeIn} className="mb-16">
           <div className="flex items-center gap-3 mb-8">
-            <Sparkles className="w-6 h-6 text-amber-600" />
-            <h3 className="font-serif text-3xl font-bold text-slate-900">Hotel Facilities</h3>
+            <div className="w-10 h-10 rounded-xl bg-amber-100 flex items-center justify-center">
+              <Bed className="w-5 h-5 text-amber-600" />
+            </div>
+            <h3 className="font-serif text-2xl sm:text-3xl font-bold text-slate-900">Our Rooms</h3>
           </div>
-          
-          <div className="grid md:grid-cols-2 gap-8">
-            {galleryData.facilities.map((facility, index) => (
-              <motion.div
-                key={facility.id}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group cursor-pointer"
-                onClick={() => openLightbox(facility, galleryData.rooms.length + index)}
-              >
-                <Card className="overflow-hidden border-2 hover:border-amber-200 hover:shadow-2xl transition-all duration-500">
-                  <div className="relative h-80 overflow-hidden">
-                    <img 
-                      src={facility.image}
-                      alt={facility.seoAlt}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    
-                    <div className="absolute top-4 right-4 px-4 py-2 rounded-full bg-white/90 backdrop-blur-sm">
-                      <span className="text-sm font-bold text-slate-900">{facility.category}</span>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {rooms.map((room, idx) => {
+              const globalIdx = galleryItems.indexOf(room);
+              return (
+                <motion.div
+                  key={room.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  className="group cursor-pointer"
+                  onClick={() => openLightbox(globalIdx)}
+                  data-testid={`gallery-${room.id}`}
+                >
+                  <div className="relative rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-500">
+                    <div className="aspect-[4/3]">
+                      <img
+                        src={room.image}
+                        alt={room.seoAlt}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                        loading="lazy"
+                      />
                     </div>
-                    
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-300" />
+
+                    {/* Room Number Badge */}
+                    <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-amber-500/90 backdrop-blur-sm">
+                      <span className="text-xs font-bold text-white tracking-wide">
+                        {room.title.split(" - ")[0]}
+                      </span>
+                    </div>
+
+                    {/* Hover overlay */}
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className="text-white text-center">
-                        <Sparkles className="w-12 h-12 mx-auto mb-2" />
-                        <p className="text-sm font-medium">Click to enlarge</p>
+                      <div className="w-12 h-12 rounded-full bg-white/25 backdrop-blur-sm flex items-center justify-center">
+                        <Eye className="w-6 h-6 text-white" />
                       </div>
                     </div>
+
+                    {/* Bottom info */}
+                    <div className="absolute bottom-0 left-0 right-0 p-4">
+                      <h4 className="font-serif text-lg font-bold text-white leading-tight mb-0.5">
+                        {room.title}
+                      </h4>
+                      <p className="text-white/80 text-xs">{room.subtitle}</p>
+                    </div>
                   </div>
-                  
-                  <CardContent className="p-6 space-y-4">
-                    <div>
-                      <h4 className="font-serif text-2xl font-bold text-slate-900 mb-1">{facility.title}</h4>
-                      <p className="text-sm text-amber-600 font-medium">{facility.subtitle}</p>
-                    </div>
-                    
-                    <p className="text-slate-600 leading-relaxed">
-                      {facility.description}
-                    </p>
-                    
-                    <div className="flex flex-wrap gap-2 pt-4 border-t border-slate-100">
-                      {facility.features.map((feature, i) => (
-                        <span key={i} className="text-sm px-3 py-1.5 rounded-full bg-amber-50 text-amber-700 font-medium">
-                          {feature}
-                        </span>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+
+                  {/* Tags below card */}
+                  <div className="flex flex-wrap gap-1.5 mt-3">
+                    {room.tags?.map((tag) => (
+                      <span
+                        key={tag}
+                        className="text-[11px] px-2.5 py-1 rounded-full bg-amber-50 text-amber-700 font-medium"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </motion.div>
 
-        {/* CTA Section */}
-        <motion.div {...fadeInUp} className="mt-20 text-center">
-          <div className="bg-gradient-to-br from-amber-500 to-amber-600 rounded-2xl p-12 text-white">
-            <h3 className="font-serif text-3xl md:text-4xl font-bold mb-4">
-              Ready to Experience Skardu's Best Hotel?
+        {/* Restaurant Section */}
+        <motion.div {...fadeIn}>
+          <div className="flex items-center gap-3 mb-8">
+            <div className="w-10 h-10 rounded-xl bg-amber-100 flex items-center justify-center">
+              <Utensils className="w-5 h-5 text-amber-600" />
+            </div>
+            <h3 className="font-serif text-2xl sm:text-3xl font-bold text-slate-900">
+              Dining & Facilities
             </h3>
-            <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
-              Book your stay at Mount View Hotel Skardu and enjoy clean, comfortable accommodations 
-              near all major tourist destinations
-            </p>
-            <Button 
-              size="lg"
-              className="bg-white text-amber-600 hover:bg-slate-50 px-10 py-7 text-lg font-semibold rounded-xl shadow-2xl"
-            >
-              Book Your Room Now
-            </Button>
+          </div>
+
+          <div
+            className="group relative rounded-2xl overflow-hidden cursor-pointer shadow-xl hover:shadow-2xl transition-shadow duration-500"
+            onClick={() => openLightbox(galleryItems.indexOf(facilities[1]))}
+            data-testid="gallery-restaurant"
+          >
+            <div className="grid md:grid-cols-2">
+              {/* Image */}
+              <div className="aspect-[4/3] md:aspect-auto">
+                <img
+                  src={facilities[1].image}
+                  alt={facilities[1].seoAlt}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  loading="lazy"
+                />
+              </div>
+              {/* Info Panel */}
+              <div className="bg-slate-900 p-8 sm:p-10 flex flex-col justify-center">
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {facilities[1].tags?.map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-xs px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 font-medium"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <h4 className="font-serif text-2xl sm:text-3xl font-bold text-white mb-3">
+                  {facilities[1].title}
+                </h4>
+                <p className="text-slate-300 leading-relaxed mb-6">
+                  {facilities[1].description}
+                </p>
+                <div className="flex items-center gap-4 text-sm text-slate-400">
+                  <span className="flex items-center gap-1.5">
+                    <Utensils className="w-4 h-4 text-amber-400" /> Pakistani &amp; Skardu Cuisine
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <Users className="w-4 h-4 text-amber-400" /> Family Friendly
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
         </motion.div>
       </div>
 
       {/* Lightbox Modal */}
-      {selectedImage && (
+      {lightboxIndex !== null && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm flex items-center justify-center"
           onClick={closeLightbox}
+          data-testid="gallery-lightbox"
         >
+          {/* Close */}
           <button
             onClick={closeLightbox}
-            className="absolute top-4 right-4 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors"
+            className="absolute top-4 right-4 z-10 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors"
+            data-testid="lightbox-close"
           >
-            <X className="w-6 h-6" />
+            <X className="w-5 h-5" />
           </button>
 
+          {/* Nav prev */}
           <button
-            onClick={(e) => { e.stopPropagation(); navigateImage('prev'); }}
-            className="absolute left-4 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors"
+            onClick={(e) => {
+              e.stopPropagation();
+              navigate(-1);
+            }}
+            className="absolute left-3 sm:left-6 z-10 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors"
+            data-testid="lightbox-prev"
           >
-            <ChevronLeft className="w-6 h-6" />
+            <ChevronLeft className="w-5 h-5" />
           </button>
 
+          {/* Nav next */}
           <button
-            onClick={(e) => { e.stopPropagation(); navigateImage('next'); }}
-            className="absolute right-4 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors"
+            onClick={(e) => {
+              e.stopPropagation();
+              navigate(1);
+            }}
+            className="absolute right-3 sm:right-6 z-10 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors"
+            data-testid="lightbox-next"
           >
-            <ChevronRight className="w-6 h-6" />
+            <ChevronRight className="w-5 h-5" />
           </button>
 
-          <div className="max-w-6xl w-full" onClick={(e) => e.stopPropagation()}>
+          {/* Image + Caption */}
+          <div className="max-w-5xl w-full px-14" onClick={(e) => e.stopPropagation()}>
             <motion.img
-              initial={{ scale: 0.8, opacity: 0 }}
+              key={lightboxIndex}
+              initial={{ scale: 0.92, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.3 }}
-              src={selectedImage.image}
-              alt={selectedImage.seoAlt}
-              className="w-full h-auto max-h-[80vh] object-contain rounded-xl"
+              transition={{ duration: 0.25 }}
+              src={galleryItems[lightboxIndex].image}
+              alt={galleryItems[lightboxIndex].seoAlt}
+              className="w-full max-h-[78vh] object-contain rounded-xl"
             />
-            <div className="mt-6 text-center text-white">
-              <h3 className="font-serif text-2xl font-bold mb-2">{selectedImage.title}</h3>
-              <p className="text-white/80">{selectedImage.subtitle}</p>
+            <div className="mt-4 text-center text-white">
+              <h3 className="font-serif text-xl font-bold">{galleryItems[lightboxIndex].title}</h3>
+              <p className="text-white/70 text-sm mt-1">{galleryItems[lightboxIndex].subtitle}</p>
+              <p className="text-white/50 text-xs mt-1">
+                {lightboxIndex + 1} / {galleryItems.length}
+              </p>
             </div>
           </div>
         </motion.div>
       )}
-    </div>
+    </section>
   );
 }

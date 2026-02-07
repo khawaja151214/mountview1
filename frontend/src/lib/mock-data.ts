@@ -1,5 +1,5 @@
 // Real hotel images
-import heroImg from "@assets/c1d9db4f-cf89-4fbd-a48c-18e96042c396_1767134676800_1767430765600.jpeg";
+import heroImg from "@assets/IMG_5559_1767339383873_1767431374218.jpeg";
 import room1Img from "@assets/IMG_5538_1767190348861_1767431623667.webp";
 import room2Img from "@assets/9915fd4f-0815-41eb-823b-9bc600418b7f_1767134676800_1767431573088.jpeg";
 import room3Img from "@assets/8b348f38-191f-4e69-a431-646d2a178d13_1767192367480_1767430882671.jpeg";

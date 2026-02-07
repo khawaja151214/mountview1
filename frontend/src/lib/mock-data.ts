@@ -68,7 +68,7 @@ export const rooms: Room[] = [
     description: "Cozy room with natural light and comfortable bedding for a relaxing stay.",
     seoDescription: "Cozy budget room in Skardu. Perfect for families and solo travelers. Near Skardu airport and city attractions.",
     capacity: "2-3 Guests (Family Suitable)", amenities: ["Free Wi-Fi", "Hot Water", "Basic TV", "City View", "Free Parking"],
-    image: room1Img, imageAlt: "cozy budget room 103 in Skardu hotel",
+    image: "/gallery/room-elegant.jpeg", imageAlt: "cozy budget room 103 in Skardu hotel",
   },
   {
     id: "mv-104", number: "MV 104", seoName: "Skardu City View Budget Room 104", seoUrl: "skardu-city-view-budget-room-104",
@@ -76,7 +76,7 @@ export const rooms: Room[] = [
     description: "Well-maintained room with modern amenities and city views.",
     seoDescription: "Well-maintained budget room in Skardu city. Conveniently located near Skardu airport and tourist spots.",
     capacity: "2-3 Guests (Family Suitable)", amenities: ["Free Wi-Fi", "Hot Water", "Basic TV", "City View", "Free Parking"],
-    image: room2Img, imageAlt: "well-maintained budget room 104 in Skardu hotel",
+    image: "/gallery/lobby.jpeg", imageAlt: "well-maintained budget room 104 in Skardu hotel",
   },
   {
     id: "mv-105", number: "MV 105", seoName: "Skardu City View Budget Room 105", seoUrl: "skardu-city-view-budget-room-105",
@@ -84,7 +84,7 @@ export const rooms: Room[] = [
     description: "Bright and airy room with comfortable furnishings and warm hospitality.",
     seoDescription: "Bright budget room in Skardu hotel. Ideal for families and groups visiting Gilgit-Baltistan.",
     capacity: "2-3 Guests (Family Suitable)", amenities: ["Free Wi-Fi", "Hot Water", "Basic TV", "City View", "Free Parking"],
-    image: room3Img, imageAlt: "bright budget room 105 in Mount View Hotel Skardu",
+    image: "/gallery/room-suite-large.jpeg", imageAlt: "bright budget room 105 in Mount View Hotel Skardu",
   },
   {
     id: "mv-106", number: "MV 106", seoName: "Skardu City View Budget Room 106", seoUrl: "skardu-city-view-budget-room-106",
@@ -92,7 +92,7 @@ export const rooms: Room[] = [
     description: "Quiet room with a peaceful ambiance, ideal for rest after a day of exploring.",
     seoDescription: "Quiet and peaceful budget room in Skardu hotel. Perfect rest spot after exploring Deosai and Kachura Lake.",
     capacity: "2-3 Guests (Family Suitable)", amenities: ["Free Wi-Fi", "Hot Water", "Basic TV", "City View", "Free Parking"],
-    image: execRoom1Img, imageAlt: "quiet budget room 106 in Skardu hotel near tourist spots",
+    image: room1Img, imageAlt: "quiet budget room 106 in Skardu hotel near tourist spots",
   },
   {
     id: "mv-107", number: "MV 107", seoName: "Skardu City View Budget Room 107", seoUrl: "skardu-city-view-budget-room-107",
@@ -100,7 +100,7 @@ export const rooms: Room[] = [
     description: "Clean and comfortable room with all essential amenities for a budget stay.",
     seoDescription: "Clean budget room in Skardu. All essential amenities included. Near Skardu Airport and city center.",
     capacity: "2-3 Guests (Family Suitable)", amenities: ["Free Wi-Fi", "Hot Water", "Basic TV", "City View", "Free Parking"],
-    image: "/gallery/room-elegant.jpeg", imageAlt: "clean budget room 107 in Skardu hotel",
+    image: execRoom1Img, imageAlt: "clean budget room 107 in Skardu hotel",
   },
   // 1st Floor - Deluxe Rooms (MV 108-114) - Family & Group
   ...Array.from({ length: 7 }, (_, i) => ({

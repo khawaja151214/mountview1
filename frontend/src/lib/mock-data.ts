@@ -134,15 +134,49 @@ export const rooms: Room[] = [
 
 export const hotelInfo = {
   name: "Mount View Hotel Skardu",
-  address: "Main Road, Skardu, Gilgit-Baltistan",
+  tagline: "Family Hotel in Skardu City | Near Airport & Tourist Destinations",
+  address: "Main Road, Skardu City, Gilgit-Baltistan, Pakistan",
   phone: "+92 346 8484849",
+  whatsapp: "+92 346 8484849",
   email: "info@mountviewskardu.com",
+  website: "https://www.mountviewskardu.com",
   heroImage: heroImageImg,
   roomImage: homeSecImageImg,
   restaurantImage: restaurantImg,
   receptionImage: receptionImg,
   staffImage: staffImg,
   hotelNightImage: hotelNightImg,
+  // SEO Information
+  seoDescription: "Mount View Hotel Skardu - Family-friendly hotel in Skardu city near airport. Budget accommodation, group stays, restaurant, free parking, and transport facility. Ideal for families visiting Skardu tourist destinations.",
+  seoKeywords: "hotel in Skardu, family hotel Skardu, hotel near Skardu airport, budget hotel Skardu, group accommodation Skardu, hotel with restaurant, Skardu city hotel",
+  // Location & Proximity
+  location: {
+    city: "Skardu",
+    province: "Gilgit-Baltistan",
+    country: "Pakistan",
+    nearbyPlaces: [
+      "Skardu Airport (10 minutes)",
+      "Skardu City Center",
+      "Skardu Bazar (5 minutes)",
+      "Deosai National Park (accessible)",
+      "Kachura Lake (30 minutes)",
+      "Satpara Lake (20 minutes)",
+      "Shigar Valley (accessible)"
+    ]
+  },
+  // Facilities for SEO
+  facilities: [
+    "Family Accommodation",
+    "Group & Friends Stay",
+    "Budget Rooms Available",
+    "Corporate Accommodation",
+    "Free Car Parking",
+    "Basement Parking",
+    "In-House Restaurant",
+    "Transport Assistance",
+    "Free Wi-Fi",
+    "24/7 Room Service"
+  ]
 };
 
 export const masterAccount = {

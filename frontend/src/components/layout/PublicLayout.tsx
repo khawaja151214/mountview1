@@ -17,11 +17,11 @@ export function Navbar() {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <nav className="sticky top-0 z-50 w-full border-b border-[#C4A24C]/10 bg-[#0E2F2F]/95 backdrop-blur supports-[backdrop-filter]:bg-[#0E2F2F]/80">
       <div className="container flex h-20 items-center justify-between">
         <Link href="/">
-          <span className="font-serif text-2xl font-bold tracking-tight text-primary cursor-pointer">
-            Mount View<span className="text-accent">.</span>
+          <span className="font-serif text-2xl font-bold tracking-tight text-white cursor-pointer">
+            Mount View<span className="text-[#C4A24C]">.</span>
           </span>
         </Link>
 
@@ -31,24 +31,24 @@ export function Navbar() {
             <Link key={link.href} href={link.href}>
               <span
                 className={cn(
-                  "text-sm font-medium transition-colors hover:text-primary cursor-pointer",
+                  "text-sm font-medium transition-colors hover:text-[#C4A24C] cursor-pointer",
                   location === link.href
-                    ? "text-primary font-semibold"
-                    : "text-muted-foreground"
+                    ? "text-[#C4A24C] font-semibold"
+                    : "text-white/80"
                 )}
               >
                 {link.label}
               </span>
             </Link>
           ))}
-          <div className="flex items-center gap-3 pl-4 border-l">
+          <div className="flex items-center gap-3 pl-4 border-l border-white/20">
             <Link href="/book">
-              <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium px-6">
+              <Button className="bg-[#C4A24C] hover:bg-[#d4b65e] text-white font-medium px-6">
                 Book Now
               </Button>
             </Link>
             <Link href="/login">
-              <Button variant="ghost" size="sm" className="gap-2 text-muted-foreground hover:text-primary">
+              <Button variant="ghost" size="sm" className="gap-2 text-white/60 hover:text-[#C4A24C]">
                 <LogIn className="h-4 w-4" /> Staff
               </Button>
             </Link>
@@ -57,7 +57,7 @@ export function Navbar() {
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden p-2"
+          className="md:hidden p-2 text-white"
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle menu"
         >
@@ -67,12 +67,12 @@ export function Navbar() {
 
       {/* Mobile Nav */}
       {isOpen && (
-        <div className="md:hidden border-t bg-background p-4 animate-in slide-in-from-top-5">
+        <div className="md:hidden border-t border-white/10 bg-[#0E2F2F] p-4 animate-in slide-in-from-top-5">
           <div className="flex flex-col gap-4">
             {links.map((link) => (
               <Link key={link.href} href={link.href}>
                 <span
-                  className="text-base font-medium py-2 block border-b border-border/50 cursor-pointer"
+                  className="text-base font-medium py-2 block border-b border-white/10 cursor-pointer text-white/80"
                   onClick={() => setIsOpen(false)}
                 >
                   {link.label}
@@ -80,12 +80,12 @@ export function Navbar() {
               </Link>
             ))}
             <Link href="/book">
-              <Button className="w-full mt-2" onClick={() => setIsOpen(false)}>
+              <Button className="w-full mt-2 bg-[#C4A24C] hover:bg-[#d4b65e] text-white" onClick={() => setIsOpen(false)}>
                 Book Your Stay
               </Button>
             </Link>
             <Link href="/login">
-              <Button variant="outline" className="w-full gap-2" onClick={() => setIsOpen(false)}>
+              <Button variant="outline" className="w-full gap-2 border-white/20 text-white/80" onClick={() => setIsOpen(false)}>
                 <LogIn className="h-4 w-4" /> Employee Portal
               </Button>
             </Link>

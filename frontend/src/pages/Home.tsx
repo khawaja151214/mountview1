@@ -108,38 +108,17 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4"
+              className="flex justify-center items-center pt-4"
             >
-              <Link href="/book">
-                <Button 
-                  size="lg" 
-                  className="group btn-glow bg-[#C4A24C] hover:bg-[#d4b65e] text-white px-10 py-7 text-lg font-semibold rounded-xl shadow-2xl transition-all duration-300 hover:scale-105"
-                  data-testid="hero-book-btn"
-                >
-                  Book the Best Hotel in Skardu
-                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </Link>
-              
               <a href={`https://wa.me/${hotelInfo.whatsapp.replace(/[^0-9]/g, '')}`} target="_blank" rel="noopener noreferrer">
                 <Button 
                   size="lg"
-                  variant="outline"
-                  className="group bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border-2 border-white/30 hover:border-[#C4A24C] px-10 py-7 text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105"
+                  className="group btn-glow bg-[#C4A24C] hover:bg-[#d4b65e] text-white px-10 py-7 text-lg font-semibold rounded-xl shadow-2xl transition-all duration-300 hover:scale-105"
+                  data-testid="hero-book-btn"
                 >
                   <MessageCircle className="mr-2 w-5 h-5" />
-                  WhatsApp Us
-                </Button>
-              </a>
-
-              <a href={`tel:${hotelInfo.phone}`}>
-                <Button 
-                  size="lg"
-                  variant="outline"
-                  className="group bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border-2 border-white/30 hover:border-[#C4A24C] px-10 py-7 text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105"
-                >
-                  <Phone className="mr-2 w-5 h-5" />
-                  Call Now
+                  Book on WhatsApp
+                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </a>
             </motion.div>

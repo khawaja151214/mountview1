@@ -98,39 +98,39 @@ export function Navbar() {
 
 export function Footer() {
   return (
-    <footer className="bg-primary text-primary-foreground py-12">
+    <footer className="bg-[#0E2F2F] text-white py-12">
       <div className="container grid md:grid-cols-4 gap-8">
         <div className="col-span-1 md:col-span-2">
           <h3 className="font-serif text-2xl font-bold mb-4">
-            Mount View Hotel<span className="text-accent">.</span>
+            Mount View Hotel<span className="text-[#C4A24C]">.</span>
           </h3>
-          <p className="text-primary-foreground/80 max-w-sm">
-            Experience luxury and comfort in the heart of Skardu. Your gateway to the mountains.
+          <p className="text-white/70 max-w-sm">
+            The best hotel in Skardu offering luxury 3 star &amp; 5 star comfort near Skardu Airport, Deosai, and all major tourist destinations.
           </p>
         </div>
         <div>
-          <h4 className="font-semibold mb-4 text-accent">Quick Links</h4>
+          <h4 className="font-semibold mb-4 text-[#C4A24C]">Quick Links</h4>
           <ul className="space-y-2 text-sm">
-            <li><Link href="/rooms"><span className="hover:underline cursor-pointer">Rooms</span></Link></li>
-            <li><Link href="/restaurant"><span className="hover:underline cursor-pointer">Restaurant</span></Link></li>
-            <li><Link href="/explore"><span className="hover:underline cursor-pointer">Destinations</span></Link></li>
-            <li><Link href="/contact"><span className="hover:underline cursor-pointer">Contact</span></Link></li>
-            <li><Link href="/login"><span className="hover:underline cursor-pointer">Staff Login</span></Link></li>
+            <li><Link href="/rooms"><span className="hover:text-[#C4A24C] transition-colors cursor-pointer text-white/70">Rooms &amp; Rates</span></Link></li>
+            <li><Link href="/restaurant"><span className="hover:text-[#C4A24C] transition-colors cursor-pointer text-white/70">Restaurant</span></Link></li>
+            <li><Link href="/explore"><span className="hover:text-[#C4A24C] transition-colors cursor-pointer text-white/70">Explore Skardu</span></Link></li>
+            <li><Link href="/contact"><span className="hover:text-[#C4A24C] transition-colors cursor-pointer text-white/70">Contact</span></Link></li>
+            <li><Link href="/login"><span className="hover:text-[#C4A24C] transition-colors cursor-pointer text-white/70">Staff Login</span></Link></li>
           </ul>
         </div>
         <div>
-          <h4 className="font-semibold mb-4 text-accent">Contact Us</h4>
-          <ul className="space-y-2 text-sm text-primary-foreground/80">
+          <h4 className="font-semibold mb-4 text-[#C4A24C]">Contact Us</h4>
+          <ul className="space-y-2 text-sm text-white/70">
             <li className="flex items-center gap-2">
-              <Phone className="h-4 w-4" /> +92 346 8484849
+              <Phone className="h-4 w-4 text-[#C4A24C]" /> +92 346 8484849
             </li>
-            <li>Main Road, Skardu City</li>
+            <li>College Road, Skardu City</li>
             <li>Gilgit-Baltistan, Pakistan</li>
           </ul>
         </div>
       </div>
-      <div className="container border-t border-primary-foreground/10 mt-12 pt-8 text-center text-xs text-primary-foreground/50">
-        © 2025 Mount View Hotel Skardu. All rights reserved.
+      <div className="container border-t border-white/10 mt-12 pt-8 text-center text-xs text-white/40">
+        &copy; 2025 Mount View Hotel Skardu — Best Hotel in Skardu. All rights reserved.
       </div>
     </footer>
   );

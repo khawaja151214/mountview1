@@ -598,18 +598,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Sticky Floating Book Now Button */}
-      <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3" data-testid="sticky-buttons">
+      {/* Sticky WhatsApp Button */}
+      <div className="fixed bottom-6 right-6 z-50" data-testid="sticky-buttons">
         <a href={`https://wa.me/${hotelInfo.whatsapp.replace(/[^0-9]/g, '')}`} target="_blank" rel="noopener noreferrer">
           <div className="w-14 h-14 rounded-full bg-green-500 hover:bg-green-600 flex items-center justify-center shadow-2xl cursor-pointer transition-all duration-300 hover:scale-110">
             <MessageCircle className="w-7 h-7 text-white" />
           </div>
         </a>
-        <Link href="/book">
-          <div className="btn-glow px-5 py-3 rounded-full bg-[#C4A24C] hover:bg-[#d4b65e] text-white font-semibold shadow-2xl cursor-pointer transition-all duration-300 hover:scale-105 text-center text-sm">
-            Book Now
-          </div>
-        </Link>
       </div>
     </div>
   );

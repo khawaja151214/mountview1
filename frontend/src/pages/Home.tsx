@@ -598,14 +598,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Sticky WhatsApp Button */}
-      <div className="fixed bottom-6 right-6 z-50" data-testid="sticky-buttons">
-        <a href={`https://wa.me/${hotelInfo.whatsapp.replace(/[^0-9]/g, '')}`} target="_blank" rel="noopener noreferrer">
-          <div className="w-14 h-14 rounded-full bg-green-500 hover:bg-green-600 flex items-center justify-center shadow-2xl cursor-pointer transition-all duration-300 hover:scale-110">
-            <MessageCircle className="w-7 h-7 text-white" />
-          </div>
-        </a>
-      </div>
+      {/* Sticky WhatsApp Button - handled globally in App.tsx */}
     </div>
   );
 }

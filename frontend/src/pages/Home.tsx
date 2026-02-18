@@ -26,7 +26,7 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-50">
+    <div className="flex flex-col min-h-screen">
       
       {/* Premium Hero Section */}
       <section className="relative h-[95vh] flex items-center justify-center overflow-hidden">
@@ -34,12 +34,10 @@ export default function Home() {
         <div className="absolute inset-0 z-0">
           <img
             src={hotelInfo.heroImage}
-            alt="Mount View Hotel Skardu - Premium Hotel with Karakoram Mountain Views"
+            alt="Best Hotel in Skardu - Mount View Hotel with Karakoram Mountain Views"
             className="w-full h-full object-cover scale-105 animate-slow-zoom"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
-          {/* Subtle Pattern Overlay */}
-          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wMiI+PHBhdGggZD0iTTM2IDM0djItaDJ2LTJoLTJ6bTAgNGgtMnYyaDJ2LTJ6bTItMmgydjJoLTJ2LTJ6bTAtNGgydjJoLTJ2LTJ6bS0yLTJoLTJ2Mmgydi0yem0yLTJoMnYyaC0ydi0yem0tMi0yaC0ydjJoMnYtMnptMi0yaDJ2MmgtMnYtMnptLTItMmgtMnYyaDJ2LTJ6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-30" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0E2F2F]/70 via-[#0E2F2F]/40 to-[#0E2F2F]/80" />
         </div>
 
         {/* Hero Content */}
@@ -51,34 +49,35 @@ export default function Home() {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 backdrop-blur-md border border-[#C4A24C]/40"
             >
-              <Sparkles className="w-4 h-4 text-amber-300" />
-              <span className="text-white text-sm font-medium tracking-wide">Premium Hotel in Skardu</span>
+              <Star className="w-4 h-4 text-[#C4A24C]" />
+              <span className="text-white text-sm font-medium tracking-wide">Top Rated Luxury Hotel in Skardu</span>
             </motion.div>
 
-            {/* Main Headline */}
+            {/* SEO H1 */}
             <motion.h1 
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="font-serif text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white leading-tight"
+              className="font-serif text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-tight"
             >
-              Where Mountains<br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 via-blue-100 to-amber-200">
-                Meet Hospitality
+              Best Hotel in Skardu<br/>
+              <span className="text-[#C4A24C]">
+                Luxury 3 Star &amp; 5 Star Comfort
               </span>
             </motion.h1>
 
-            {/* Subheadline */}
+            {/* SEO Subheadline with keywords in first 100 words */}
             <motion.p 
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-xl md:text-2xl font-light max-w-3xl mx-auto text-white/95 leading-relaxed"
+              className="text-lg md:text-xl font-light max-w-3xl mx-auto text-white/95 leading-relaxed"
             >
-              Experience exceptional comfort and scenic Karakoram views at Mount View Hotel Skardu. 
-              Your perfect escape in the heart of Skardu city.
+              Mount View Hotel is the best hotel in Skardu, offering luxury accommodation near Skardu Airport 
+              and top tourist destinations. Experience 5 star comfort with stunning Karakoram mountain views, 
+              24/7 restaurant, and warm hospitality.
             </motion.p>
 
             {/* Trust Indicators */}
@@ -89,17 +88,17 @@ export default function Home() {
               className="flex flex-wrap justify-center items-center gap-6 text-white/90"
             >
               <div className="flex items-center gap-2">
-                <MapPin className="w-5 h-5 text-amber-300" />
+                <MapPin className="w-5 h-5 text-[#C4A24C]" />
                 <span className="text-sm font-medium">Near Skardu Airport</span>
               </div>
               <div className="w-px h-6 bg-white/30" />
               <div className="flex items-center gap-2">
-                <Shield className="w-5 h-5 text-amber-300" />
-                <span className="text-sm font-medium">Clean & Safe</span>
+                <Mountain className="w-5 h-5 text-[#C4A24C]" />
+                <span className="text-sm font-medium">Near Deosai &amp; Lakes</span>
               </div>
               <div className="w-px h-6 bg-white/30" />
               <div className="flex items-center gap-2">
-                <Users className="w-5 h-5 text-amber-300" />
+                <Shield className="w-5 h-5 text-[#C4A24C]" />
                 <span className="text-sm font-medium">Family Friendly</span>
               </div>
             </motion.div>
@@ -114,9 +113,10 @@ export default function Home() {
               <Link href="/book">
                 <Button 
                   size="lg" 
-                  className="group bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-white px-10 py-7 text-lg font-semibold rounded-xl shadow-2xl shadow-amber-500/30 hover:shadow-amber-500/50 transition-all duration-300 hover:scale-105"
+                  className="group btn-glow bg-[#C4A24C] hover:bg-[#d4b65e] text-white px-10 py-7 text-lg font-semibold rounded-xl shadow-2xl transition-all duration-300 hover:scale-105"
+                  data-testid="hero-book-btn"
                 >
-                  Book Your Stay
+                  Book the Best Hotel in Skardu
                   <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </Link>
@@ -125,7 +125,7 @@ export default function Home() {
                 <Button 
                   size="lg"
                   variant="outline"
-                  className="group bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border-2 border-white/30 hover:border-white/50 px-10 py-7 text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105"
+                  className="group bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border-2 border-white/30 hover:border-[#C4A24C] px-10 py-7 text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105"
                 >
                   <MessageCircle className="mr-2 w-5 h-5" />
                   WhatsApp Us
@@ -136,7 +136,7 @@ export default function Home() {
                 <Button 
                   size="lg"
                   variant="outline"
-                  className="group bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border-2 border-white/30 hover:border-white/50 px-10 py-7 text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105"
+                  className="group bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border-2 border-white/30 hover:border-[#C4A24C] px-10 py-7 text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105"
                 >
                   <Phone className="mr-2 w-5 h-5" />
                   Call Now
@@ -155,7 +155,7 @@ export default function Home() {
         >
           <div className="flex flex-col items-center gap-2 text-white/60">
             <span className="text-xs uppercase tracking-widest">Scroll to explore</span>
-            <div className="w-px h-16 bg-gradient-to-b from-white/60 to-transparent animate-pulse" />
+            <div className="w-px h-16 bg-gradient-to-b from-[#C4A24C]/60 to-transparent animate-pulse" />
           </div>
         </motion.div>
       </section>

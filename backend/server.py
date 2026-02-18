@@ -1,12 +1,17 @@
 from fastapi import FastAPI, Request, Response
-from fastapi.responses import StreamingResponse
+from fastapi.responses import StreamingResponse, JSONResponse
 from starlette.background import BackgroundTask
 from starlette.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
 import httpx
 import subprocess
 import os
 import time
 import logging
+import uuid
+from dotenv import load_dotenv
+
+load_dotenv()
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)

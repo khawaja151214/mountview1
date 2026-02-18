@@ -301,41 +301,41 @@ export default function Home() {
       {/* Premium Photo Gallery */}
       <PremiumGallery />
 
-      {/* Location Advantage - Tourism Focus */}
-      <section className="py-24 bg-white">
+      {/* Location - Hotel Near Deosai & Tourist Destinations */}
+      <section className="py-24 bg-[#FAF6EE]">
         <div className="container max-w-7xl px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div {...fadeInUp} className="space-y-6">
-              <span className="inline-block text-amber-600 font-semibold tracking-wider text-sm uppercase">Strategic Location</span>
-              <h2 className="font-serif text-4xl md:text-5xl font-bold text-slate-900 leading-tight">
-                Your Gateway to<br/>Skardu's Wonders
+              <span className="inline-block text-[#C4A24C] font-semibold tracking-wider text-sm uppercase">Strategic Location</span>
+              <h2 className="font-serif text-4xl md:text-5xl font-bold text-[#0E2F2F] leading-tight">
+                Hotel Near Deosai &amp; Top Tourist Destinations in Skardu
               </h2>
-              <p className="text-lg text-slate-600 leading-relaxed">
-                Mount View Hotel Skardu is perfectly positioned for exploring the magnificent attractions of Gilgit-Baltistan. From our hotel, embark on unforgettable journeys to Pakistan's most stunning destinations.
+              <p className="text-lg text-[#0E2F2F]/70 leading-relaxed">
+                Mount View Hotel is ideally located near Skardu Airport and all major tourist attractions. As the best hotel near Deosai, Satpara Lake, and Shangrila Resort, we are your perfect base for exploring Gilgit-Baltistan.
               </p>
 
               <div className="space-y-4">
                 {[
-                  { place: "Skardu Airport", time: "10 minutes", desc: "Convenient airport transfers" },
-                  { place: "Skardu City Center & Bazar", time: "5 minutes", desc: "Shopping and local culture" },
-                  { place: "Deosai National Park", time: "1.5 hours", desc: "Land of Giants" },
-                  { place: "Kachura Lake (Shangri-La)", time: "30 minutes", desc: "Paradise on Earth" },
-                  { place: "Satpara Lake", time: "20 minutes", desc: "Crystal clear waters" },
-                  { place: "Shigar Valley", time: "45 minutes", desc: "Historic fort and valley" }
+                  { place: "Skardu Airport", time: "10 minutes", desc: "Hotel near Skardu Airport — convenient transfers" },
+                  { place: "Skardu City Center & Bazar", time: "5 minutes", desc: "Hotel near city center — shopping and dining" },
+                  { place: "Deosai National Park", time: "1.5 hours", desc: "Hotel near Deosai — Land of Giants" },
+                  { place: "Shangrila Resort (Upper Kachura)", time: "30 minutes", desc: "Hotel near Shangrila Resort — Paradise on Earth" },
+                  { place: "Satpara Lake", time: "20 minutes", desc: "Hotel near Satpara Lake — crystal clear waters" },
+                  { place: "Shigar Valley & Fort", time: "45 minutes", desc: "Historic fort and scenic valley" }
                 ].map((location, index) => (
                   <motion.div
                     key={index}
                     {...fadeInUp}
                     transition={{ delay: index * 0.05 }}
-                    className="flex items-start gap-4 p-4 rounded-xl hover:bg-amber-50 transition-colors duration-300"
+                    className="flex items-start gap-4 p-4 rounded-xl hover:bg-white transition-colors duration-300"
                   >
-                    <div className="flex-shrink-0 w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center">
-                      <MapPin className="w-6 h-6 text-amber-600" />
+                    <div className="flex-shrink-0 w-12 h-12 rounded-full bg-[#C4A24C]/10 flex items-center justify-center">
+                      <MapPin className="w-6 h-6 text-[#C4A24C]" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-slate-900 text-lg">{location.place}</h4>
-                      <p className="text-sm text-amber-600 font-medium">{location.time}</p>
-                      <p className="text-sm text-slate-600">{location.desc}</p>
+                      <h4 className="font-semibold text-[#0E2F2F] text-lg">{location.place}</h4>
+                      <p className="text-sm text-[#C4A24C] font-medium">{location.time}</p>
+                      <p className="text-sm text-[#0E2F2F]/60">{location.desc}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -346,14 +346,47 @@ export default function Home() {
               <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl">
                 <img 
                   src={hotelInfo.roomImage}
-                  alt="Mount View Hotel location near Skardu tourist spots"
+                  alt="Best hotel in Skardu near tourist spots Deosai Satpara Lake Shangrila"
                   className="w-full h-full object-cover"
+                  loading="lazy"
                 />
               </div>
-              <div className="absolute -bottom-6 -left-6 w-48 h-48 bg-amber-500 rounded-2xl -z-10" />
-              <div className="absolute -top-6 -right-6 w-32 h-32 bg-blue-500 rounded-2xl -z-10" />
+              <div className="absolute -bottom-6 -left-6 w-48 h-48 bg-[#C4A24C]/20 rounded-2xl -z-10" />
+              <div className="absolute -top-6 -right-6 w-32 h-32 bg-[#0E2F2F]/10 rounded-2xl -z-10" />
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* Animated Counters Section */}
+      <section className="py-20 bg-[#0E2F2F] text-white" data-testid="counters-section">
+        <div className="container max-w-7xl px-6">
+          <motion.div
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={{ once: true }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center"
+          >
+            {[
+              { value: "5000+", label: "Happy Guests", icon: <Users className="w-8 h-8" /> },
+              { value: "20+", label: "Luxury Rooms", icon: <HomeIcon className="w-8 h-8" /> },
+              { value: "8+", label: "Years of Service", icon: <Award className="w-8 h-8" /> },
+              { value: "4.8", label: "Guest Rating", icon: <Star className="w-8 h-8" /> },
+            ].map((stat, index) => (
+              <motion.div
+                key={index}
+                variants={fadeInUp}
+                className="space-y-3"
+              >
+                <div className="w-16 h-16 mx-auto rounded-2xl bg-[#C4A24C]/10 flex items-center justify-center text-[#C4A24C]">
+                  {stat.icon}
+                </div>
+                <div className="font-serif text-4xl md:text-5xl font-bold text-[#C4A24C]">{stat.value}</div>
+                <div className="text-white/70 font-medium">{stat.label}</div>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </section>
 

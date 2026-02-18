@@ -101,17 +101,17 @@ export default function PremiumGallery() {
   const facilities = galleryItems.filter((i) => i.category === "facility");
 
   return (
-    <section className="py-24 bg-gradient-to-b from-slate-50 via-white to-slate-50" data-testid="premium-gallery-section">
+    <section className="py-24 bg-white" data-testid="premium-gallery-section">
       <div className="container max-w-7xl px-6">
         {/* Section Header */}
         <motion.div {...fadeIn} className="text-center mb-16 space-y-4">
-          <span className="inline-block text-amber-600 font-semibold tracking-wider text-sm uppercase">
+          <span className="inline-block text-[#C4A24C] font-semibold tracking-wider text-sm uppercase">
             Photo Gallery
           </span>
-          <h2 className="font-serif text-4xl md:text-5xl font-bold text-slate-900">
+          <h2 className="font-serif text-4xl md:text-5xl font-bold text-[#0E2F2F]">
             Explore Mount View Hotel
           </h2>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg text-[#0E2F2F]/70 max-w-2xl mx-auto leading-relaxed">
             Take a visual tour of our clean, comfortable rooms and modern facilities
             &mdash; your perfect base for discovering Skardu and Gilgit-Baltistan
           </p>
@@ -160,10 +160,10 @@ export default function PremiumGallery() {
         {/* Rooms Grid */}
         <motion.div {...fadeIn} className="mb-16">
           <div className="flex items-center gap-3 mb-8">
-            <div className="w-10 h-10 rounded-xl bg-amber-100 flex items-center justify-center">
-              <Bed className="w-5 h-5 text-amber-600" />
+            <div className="w-10 h-10 rounded-xl bg-[#C4A24C]/10 flex items-center justify-center">
+              <Bed className="w-5 h-5 text-[#C4A24C]" />
             </div>
-            <h3 className="font-serif text-2xl sm:text-3xl font-bold text-slate-900">Our Rooms</h3>
+            <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#0E2F2F]">Our Rooms</h3>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -192,7 +192,7 @@ export default function PremiumGallery() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-300" />
 
                     {/* Room Number Badge */}
-                    <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-amber-500/90 backdrop-blur-sm">
+                    <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#C4A24C]/90 backdrop-blur-sm">
                       <span className="text-xs font-bold text-white tracking-wide">
                         {room.title.split(" - ")[0]}
                       </span>
@@ -219,7 +219,7 @@ export default function PremiumGallery() {
                     {room.tags?.map((tag) => (
                       <span
                         key={tag}
-                        className="text-[11px] px-2.5 py-1 rounded-full bg-amber-50 text-amber-700 font-medium"
+                        className="text-[11px] px-2.5 py-1 rounded-full bg-[#F2E8D5] text-[#0E2F2F] font-medium"
                       >
                         {tag}
                       </span>
@@ -234,10 +234,10 @@ export default function PremiumGallery() {
         {/* Restaurant Section */}
         <motion.div {...fadeIn}>
           <div className="flex items-center gap-3 mb-8">
-            <div className="w-10 h-10 rounded-xl bg-amber-100 flex items-center justify-center">
-              <Utensils className="w-5 h-5 text-amber-600" />
+            <div className="w-10 h-10 rounded-xl bg-[#C4A24C]/10 flex items-center justify-center">
+              <Utensils className="w-5 h-5 text-[#C4A24C]" />
             </div>
-            <h3 className="font-serif text-2xl sm:text-3xl font-bold text-slate-900">
+            <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#0E2F2F]">
               Dining & Facilities
             </h3>
           </div>
@@ -258,12 +258,12 @@ export default function PremiumGallery() {
                 />
               </div>
               {/* Info Panel */}
-              <div className="bg-slate-900 p-8 sm:p-10 flex flex-col justify-center">
+              <div className="bg-[#0E2F2F] p-8 sm:p-10 flex flex-col justify-center">
                 <div className="flex flex-wrap gap-2 mb-4">
                   {facilities[1].tags?.map((tag) => (
                     <span
                       key={tag}
-                      className="text-xs px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 font-medium"
+                      className="text-xs px-3 py-1 rounded-full bg-[#C4A24C]/20 text-[#C4A24C] font-medium"
                     >
                       {tag}
                     </span>
@@ -277,10 +277,10 @@ export default function PremiumGallery() {
                 </p>
                 <div className="flex items-center gap-4 text-sm text-slate-400">
                   <span className="flex items-center gap-1.5">
-                    <Utensils className="w-4 h-4 text-amber-400" /> Pakistani &amp; Skardu Cuisine
+                    <Utensils className="w-4 h-4 text-[#C4A24C]" /> Pakistani &amp; Skardu Cuisine
                   </span>
                   <span className="flex items-center gap-1.5">
-                    <Users className="w-4 h-4 text-amber-400" /> Family Friendly
+                    <Users className="w-4 h-4 text-[#C4A24C]" /> Family Friendly
                   </span>
                 </div>
               </div>

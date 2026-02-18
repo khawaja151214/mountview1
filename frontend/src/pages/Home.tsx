@@ -139,7 +139,7 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Why Choose Mount View - SEO Section */}
+      {/* Why Choose Mount View Hotel - SEO Section */}
       <section className="py-24 bg-[#FAF6EE]">
         <div className="container max-w-7xl px-6">
           <motion.div {...fadeInUp} className="text-center mb-16 space-y-4">
@@ -452,7 +452,7 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-8">
             {[
               { name: "Ahmed Khan", from: "Islamabad", rating: 5, text: "The best hotel in Skardu without a doubt! Clean rooms, amazing mountain views, and the staff treated us like family. We booked for 3 nights and extended to 5." },
-              { name: "Sarah & Family", from: "Lahore", rating: 5, text: "We were looking for a family hotel in Skardu and Mount View exceeded all expectations. Kids loved it. So close to Deosai and Satpara Lake. The restaurant food was outstanding!" },
+              { name: "Sarah & Family", from: "Lahore", rating: 5, text: "We were looking for a family hotel in Skardu and Mount View Hotel exceeded all expectations. Kids loved it. So close to Deosai and Satpara Lake. The restaurant food was outstanding!" },
               { name: "James Wilson", from: "London, UK", rating: 5, text: "Best hotel near Skardu Airport! The luxury rooms rival any 5 star hotel. Perfect location for visiting Shangrila Resort and Upper Kachura Lake. Highly recommend!" }
             ].map((review, index) => (
               <motion.div

@@ -21,7 +21,7 @@ export function Navbar() {
       <div className="container flex h-20 items-center justify-between">
         <Link href="/">
           <span className="font-serif text-2xl font-bold tracking-tight text-white cursor-pointer">
-            Mount View<span className="text-[#C4A24C]">.</span>
+            Mount View Hotel<span className="text-[#C4A24C]">.</span>
           </span>
         </Link>
 

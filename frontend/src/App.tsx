@@ -16,6 +16,7 @@ import RestaurantPOS from "@/pages/admin/RestaurantPOS";
 import Approvals from "@/pages/admin/Approvals";
 import NotFound from "@/pages/not-found";
 import { Toaster } from "@/components/ui/toaster";
+import ChatBot from "@/components/ChatBot";
 
 function AdminRoute({ component: Component, isMasterOnly = false }: { component: React.ComponentType, isMasterOnly?: boolean }) {
   const [location, setLocation] = useLocation();

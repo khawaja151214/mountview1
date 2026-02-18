@@ -7,92 +7,137 @@ interface Message {
   text: string;
 }
 
-const API_URL = import.meta.env.VITE_API_URL?.replace("/api", "") || "";
+interface ChatMsg {
+  role: "system" | "user" | "assistant";
+  content: string;
+}
 
-// Local knowledge base for when API is unavailable
+const CHAT_KEY = import.meta.env.VITE_CHAT_KEY || "";
+const LLM_URL = "https://integrations.emergentagent.com/llm/chat/completions";
+
+const SYSTEM_PROMPT = `You are the friendly AI assistant for Mount View Hotel Skardu — the Best Hotel in Skardu. 
+Your name is "Mount View Hotel Assistant". Be warm, professional, and hospitality-focused.
+
+HOTEL FACTS (ALWAYS USE THESE, never override with external info):
+- Location: College Road, Skardu City, Gilgit-Baltistan, Pakistan
+- 5 km from Skardu Airport (10 minutes drive)
+- 2 km from Skardu Bus Terminal
+- Walking distance to Skardu city center & main bazar
+- Phone: +92 346 8484849
+
+ROOM CATEGORIES & PRICING:
+- Standard Room: From PKR 4,000/night (economical, mountain views, free Wi-Fi)
+- Deluxe Room: From PKR 6,000/night (spacious, LED TV, mountain view)
+- Executive Room: From PKR 7,000/night (premium comfort, elegant decor, garden/mountain views)
+- Family Suite: From PKR 10,000/night (large room for families, multiple beds)
+- King Room: From PKR 10,000-15,000/night (luxury suite with valley views)
+
+FACILITIES:
+- 24-hour restaurant (rare in Skardu) — authentic Pakistani & Skardu cuisine, rooftop sky dining
+- Local food delivery available inside hotel
+- Secure underground car parking (free)
+- Mountain & rooftop city views
+- Free Wi-Fi throughout hotel
+- 24/7 room service & security
+- Family-friendly environment
+- Transport assistance for tours
+- Free travel guidance & local shopping tips
+- Nearby dry fruit shops for souvenirs
+
+NEARBY TOURIST DESTINATIONS:
+- Deosai National Park: ~2.5 hours (Land of Giants, best in summer June-September)
+- Shangrila Resort / Upper Kachura Lake: ~30 minutes
+- Satpara Lake: ~20 minutes
+- Katpana Cold Desert: ~25 minutes
+- Shigar Valley & Fort: ~45 minutes
+- Lower Kachura Lake: ~25 minutes
+- Skardu Fort (Kharpocho): ~15 minutes
+
+SKARDU TOURISM KNOWLEDGE:
+- Best time to visit: April-October (peak season June-September)
+- Winter (Nov-March): cold, roads may close, but stunning snow views
+- Famous for: K2 base camp treks, world's highest lakes, Deosai plains
+- Local culture: Balti people, warm hospitality, unique cuisine
+- Transportation: PIA flights from Islamabad, Karakoram Highway (road)
+
+RULES:
+1. Always use the hotel facts above. Never guess prices or distances.
+2. If you don't know something, say: "I don't have that information right now. Please contact our reception at +92 346 8484849."
+3. Never fabricate facts. Keep responses concise.
+4. After answering travel/tourism questions, subtly encourage booking.
+5. For booking, direct to WhatsApp: +92 346 8484849`;
+
+// Local fallback knowledge base
 const LOCAL_KB: { keywords: string[]; answer: string }[] = [
-  {
-    keywords: ["room", "rate", "price", "cost", "tariff", "charges", "kitna", "kiraya"],
-    answer: "Our room rates:\n\n- Standard Room: From PKR 4,000/night\n- Deluxe Room: From PKR 6,000/night\n- Executive Room: From PKR 7,000/night\n- Family Suite: From PKR 10,000/night\n- King Room: From PKR 10,000-15,000/night\n\nAll rooms include free Wi-Fi, parking, and mountain views. For booking, WhatsApp us at +92 346 8484849."
-  },
-  {
-    keywords: ["airport", "flight", "plane"],
-    answer: "Mount View Hotel is just 5 km from Skardu Airport — approximately a 10-minute drive. We offer transport assistance for airport transfers. Contact us at +92 346 8484849."
-  },
-  {
-    keywords: ["deosai", "national park"],
-    answer: "Deosai National Park is approximately 2.5 hours from Mount View Hotel. It's known as the 'Land of Giants' and is best visited during summer (June-September). Many guests stay with us before and after their Deosai trip. Would you like to book? WhatsApp: +92 346 8484849."
-  },
-  {
-    keywords: ["shangrila", "kachura", "lake"],
-    answer: "Shangrila Resort and Upper Kachura Lake are about 30 minutes from Mount View Hotel. Satpara Lake is just 20 minutes away. We can help arrange transport for your visit! WhatsApp: +92 346 8484849."
-  },
-  {
-    keywords: ["satpara"],
-    answer: "Satpara Lake is just 20 minutes from Mount View Hotel — one of the closest major attractions! Crystal clear waters surrounded by mountains. Contact us for tour arrangements at +92 346 8484849."
-  },
-  {
-    keywords: ["location", "address", "where", "kahan"],
-    answer: "Mount View Hotel is located at College Road, Skardu City, Gilgit-Baltistan, Pakistan. We are centrally located — walking distance to city center, 5 km from Skardu Airport, and 2 km from the bus terminal."
-  },
-  {
-    keywords: ["restaurant", "food", "khana", "dining", "eat"],
-    answer: "Mount View Hotel has a 24-hour in-house restaurant — rare in Skardu! We serve authentic Pakistani and Skardu cuisine, with rooftop sky dining available. Local food delivery is also available inside the hotel."
-  },
-  {
-    keywords: ["parking", "car", "gaari"],
-    answer: "Yes! Mount View Hotel offers free secure underground car parking for all guests."
-  },
-  {
-    keywords: ["wifi", "internet", "wi-fi"],
-    answer: "Free high-speed Wi-Fi is available throughout Mount View Hotel for all guests."
-  },
-  {
-    keywords: ["book", "reserve", "reservation", "available", "vacancy"],
-    answer: "To book a room at Mount View Hotel, please contact us on WhatsApp at +92 346 8484849. Our rooms range from PKR 4,000 to PKR 15,000 per night depending on the category."
-  },
-  {
-    keywords: ["family", "children", "kids", "bachay"],
-    answer: "Mount View Hotel is the best family hotel in Skardu! We offer spacious Family Suites with multiple beds, a kid-friendly environment, and 24/7 room service. Family Suite starts from PKR 10,000/night."
-  },
-  {
-    keywords: ["facility", "amenity", "service", "offer"],
-    answer: "Mount View Hotel facilities:\n- 24/7 Restaurant with rooftop sky dining\n- Free Wi-Fi & underground parking\n- Mountain & city views\n- Room service & 24/7 security\n- Transport & tour assistance\n- Family-friendly environment\n\nFor details, WhatsApp: +92 346 8484849."
-  },
-  {
-    keywords: ["weather", "mausam", "climate", "temperature"],
-    answer: "Skardu has a cold desert climate. Best time to visit is April-October (peak: June-September). Summers are pleasant (15-30°C), winters can drop below -10°C. For current weather, we recommend checking before your trip. Need help planning? WhatsApp: +92 346 8484849."
-  },
-  {
-    keywords: ["best time", "visit", "season", "when"],
-    answer: "The best time to visit Skardu is April to October. Peak season is June to September when all roads are open and weather is perfect for Deosai, lakes, and trekking. Mount View Hotel is your ideal base! Book at +92 346 8484849."
-  },
-  {
-    keywords: ["transport", "taxi", "travel", "tour"],
-    answer: "Mount View Hotel provides transport assistance for all guests. We help arrange tours to Deosai, Shangrila, Satpara Lake, Shigar Valley, and more. Public and private transport is easily available nearby. WhatsApp: +92 346 8484849."
-  },
-  {
-    keywords: ["check in", "check out", "checkin", "checkout", "time"],
-    answer: "Check-in time: 2:00 PM\nCheck-out time: 12:00 PM (Noon)\n\nEarly check-in and late check-out may be available upon request. Contact us at +92 346 8484849."
-  },
-  {
-    keywords: ["contact", "phone", "number", "call", "whatsapp"],
-    answer: "You can reach Mount View Hotel at:\n- Phone/WhatsApp: +92 346 8484849\n- Address: College Road, Skardu City, Gilgit-Baltistan, Pakistan\n\nWe're happy to help with bookings, tour arrangements, or any questions!"
-  },
-  {
-    keywords: ["hello", "hi", "hey", "salam", "assalam"],
-    answer: "Welcome to Mount View Hotel Skardu — the Best Hotel in Skardu! How may I assist you today? You can ask about rooms, rates, facilities, or tourist destinations."
-  }
+  { keywords: ["room", "rate", "price", "cost", "tariff", "charges", "kitna", "kiraya"],
+    answer: "Our room rates:\n\n- Standard Room: From PKR 4,000/night\n- Deluxe Room: From PKR 6,000/night\n- Executive Room: From PKR 7,000/night\n- Family Suite: From PKR 10,000/night\n- King Room: From PKR 10,000-15,000/night\n\nAll rooms include free Wi-Fi, parking, and mountain views.\nFor booking, WhatsApp us at +92 346 8484849." },
+  { keywords: ["airport", "flight", "plane"],
+    answer: "Mount View Hotel is just 5 km from Skardu Airport — approximately a 10-minute drive. We offer transport assistance for airport transfers. Contact us at +92 346 8484849." },
+  { keywords: ["deosai", "national park"],
+    answer: "Deosai National Park is approximately 2.5 hours from Mount View Hotel. It's known as the 'Land of Giants' and is best visited during summer (June-September). Many guests stay with us before visiting. Would you like to book? WhatsApp: +92 346 8484849." },
+  { keywords: ["shangrila", "kachura", "lake"],
+    answer: "Shangrila Resort and Upper Kachura Lake are about 30 minutes from Mount View Hotel. Satpara Lake is just 20 minutes away. We can help arrange transport! WhatsApp: +92 346 8484849." },
+  { keywords: ["satpara"],
+    answer: "Satpara Lake is just 20 minutes from Mount View Hotel. Crystal clear waters surrounded by mountains. Contact us for tour arrangements at +92 346 8484849." },
+  { keywords: ["location", "address", "where", "kahan"],
+    answer: "Mount View Hotel is located at College Road, Skardu City, Gilgit-Baltistan, Pakistan. Walking distance to city center, 5 km from Skardu Airport, 2 km from bus terminal." },
+  { keywords: ["restaurant", "food", "khana", "dining", "eat"],
+    answer: "Mount View Hotel has a 24-hour in-house restaurant — rare in Skardu! We serve authentic Pakistani and Skardu cuisine, with rooftop sky dining available." },
+  { keywords: ["parking", "car", "gaari"],
+    answer: "Yes! Mount View Hotel offers free secure underground car parking for all guests." },
+  { keywords: ["wifi", "internet", "wi-fi"],
+    answer: "Free high-speed Wi-Fi is available throughout Mount View Hotel for all guests." },
+  { keywords: ["book", "reserve", "reservation", "available", "vacancy"],
+    answer: "To book a room at Mount View Hotel, WhatsApp us at +92 346 8484849. Rooms from PKR 4,000 to PKR 15,000 per night." },
+  { keywords: ["family", "children", "kids", "bachay"],
+    answer: "Mount View Hotel is the best family hotel in Skardu! Spacious Family Suites with multiple beds, kid-friendly environment, 24/7 room service. From PKR 10,000/night." },
+  { keywords: ["facility", "amenity", "service", "offer"],
+    answer: "Mount View Hotel facilities:\n- 24/7 Restaurant with rooftop sky dining\n- Free Wi-Fi & underground parking\n- Mountain & city views\n- Room service & 24/7 security\n- Transport & tour assistance\n- Family-friendly environment\n\nWhatsApp: +92 346 8484849." },
+  { keywords: ["weather", "mausam", "climate", "temperature"],
+    answer: "Skardu: Best time April-October (peak June-September). Summers 15-30°C, winters can drop below -10°C. Need help planning? WhatsApp: +92 346 8484849." },
+  { keywords: ["best time", "visit", "season", "when"],
+    answer: "Best time to visit Skardu: April to October. Peak season June-September. Mount View Hotel is your ideal base! Book at +92 346 8484849." },
+  { keywords: ["transport", "taxi", "travel", "tour"],
+    answer: "Mount View Hotel provides transport assistance. We arrange tours to Deosai, Shangrila, Satpara Lake, Shigar Valley and more. WhatsApp: +92 346 8484849." },
+  { keywords: ["check in", "check out", "checkin", "checkout", "time"],
+    answer: "Check-in: 2:00 PM | Check-out: 12:00 PM (Noon)\nEarly/late options may be available on request. Contact: +92 346 8484849." },
+  { keywords: ["contact", "phone", "number", "call", "whatsapp"],
+    answer: "Mount View Hotel:\nPhone/WhatsApp: +92 346 8484849\nAddress: College Road, Skardu City, Gilgit-Baltistan, Pakistan" },
+  { keywords: ["hello", "hi", "hey", "salam", "assalam"],
+    answer: "Welcome to Mount View Hotel Skardu — the Best Hotel in Skardu! How may I assist you? Ask about rooms, rates, facilities, or tourist destinations." }
 ];
 
 function getLocalAnswer(msg: string): string | null {
   const lower = msg.toLowerCase();
   for (const item of LOCAL_KB) {
-    if (item.keywords.some((kw) => lower.includes(kw))) {
-      return item.answer;
-    }
+    if (item.keywords.some((kw) => lower.includes(kw))) return item.answer;
   }
   return null;
+}
+
+async function callAI(history: ChatMsg[]): Promise<string | null> {
+  if (!CHAT_KEY) return null;
+  try {
+    const res = await fetch(LLM_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${CHAT_KEY}`,
+      },
+      body: JSON.stringify({
+        model: "gpt-4o-mini",
+        messages: history.slice(-8), // Keep context small
+        max_tokens: 500,
+        temperature: 0.7,
+      }),
+      signal: AbortSignal.timeout(15000),
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data.choices?.[0]?.message?.content || null;
+  } catch {
+    return null;
+  }
 }
 
 export default function ChatBot() {
@@ -100,9 +145,11 @@ export default function ChatBot() {
   const [messages, setMessages] = useState<Message[]>([
     { role: "assistant", text: "Welcome to Mount View Hotel Skardu — the Best Hotel in Skardu! How may I assist you today?" }
   ]);
+  const [history, setHistory] = useState<ChatMsg[]>([
+    { role: "system", content: SYSTEM_PROMPT }
+  ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
-  const [sessionId, setSessionId] = useState<string | null>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -116,39 +163,22 @@ export default function ChatBot() {
     setMessages((prev) => [...prev, { role: "user", text }]);
     setLoading(true);
 
-    try {
-      const res = await fetch(`${API_URL}/api/chat`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: text, session_id: sessionId }),
-      });
-      if (!res.ok) throw new Error("API error");
-      const data = await res.json();
-      if (data.session_id) setSessionId(data.session_id);
-      // Check if the API returned a fallback/error message
-      if (data.reply && !data.reply.includes("having trouble") && !data.reply.includes("unable to")) {
-        setMessages((prev) => [...prev, { role: "assistant", text: data.reply }]);
-      } else {
-        throw new Error("API fallback");
-      }
-    } catch {
-      // Fallback to local knowledge base
-      const local = getLocalAnswer(text);
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: "assistant",
-          text: local || "I don't have that information right now. Please contact our reception at +92 346 8484849 or WhatsApp us for instant help!"
-        },
-      ]);
-    } finally {
-      setLoading(false);
+    const newHistory: ChatMsg[] = [...history, { role: "user", content: text }];
+
+    // Try AI first, fallback to local KB
+    let reply = await callAI(newHistory);
+    if (!reply) {
+      reply = getLocalAnswer(text) ||
+        "I don't have that information right now. Please contact our reception at +92 346 8484849 or WhatsApp us for instant help!";
     }
+
+    setHistory([...newHistory, { role: "assistant", content: reply }]);
+    setMessages((prev) => [...prev, { role: "assistant", text: reply! }]);
+    setLoading(false);
   };
 
   return (
     <>
-      {/* Chat Toggle Button - Bottom Left */}
       <AnimatePresence>
         {!open && (
           <motion.button
@@ -165,7 +195,6 @@ export default function ChatBot() {
         )}
       </AnimatePresence>
 
-      {/* Chat Window */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -177,7 +206,6 @@ export default function ChatBot() {
             style={{ height: "500px" }}
             data-testid="chatbot-window"
           >
-            {/* Header */}
             <div className="bg-[#0E2F2F] px-5 py-4 flex items-center justify-between shrink-0">
               <div className="flex items-center gap-3">
                 <div className="w-9 h-9 rounded-full bg-[#C4A24C]/20 flex items-center justify-center">
@@ -188,26 +216,19 @@ export default function ChatBot() {
                   <p className="text-white/50 text-xs">Best Hotel in Skardu</p>
                 </div>
               </div>
-              <button
-                onClick={() => setOpen(false)}
-                className="w-8 h-8 rounded-full hover:bg-white/10 flex items-center justify-center text-white/60 hover:text-white transition-colors"
-                data-testid="chatbot-close"
-              >
+              <button onClick={() => setOpen(false)} className="w-8 h-8 rounded-full hover:bg-white/10 flex items-center justify-center text-white/60 hover:text-white transition-colors" data-testid="chatbot-close">
                 <X className="w-4 h-4" />
               </button>
             </div>
 
-            {/* Messages */}
             <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-[#FAF6EE]">
               {messages.map((msg, i) => (
                 <div key={i} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
-                  <div
-                    className={`max-w-[85%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed whitespace-pre-line ${
-                      msg.role === "user"
-                        ? "bg-[#0E2F2F] text-white rounded-br-sm"
-                        : "bg-white text-[#0E2F2F] rounded-bl-sm shadow-sm border border-[#C4A24C]/10"
-                    }`}
-                  >
+                  <div className={`max-w-[85%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed whitespace-pre-line ${
+                    msg.role === "user"
+                      ? "bg-[#0E2F2F] text-white rounded-br-sm"
+                      : "bg-white text-[#0E2F2F] rounded-bl-sm shadow-sm border border-[#C4A24C]/10"
+                  }`}>
                     {msg.text}
                   </div>
                 </div>
@@ -222,7 +243,6 @@ export default function ChatBot() {
               <div ref={bottomRef} />
             </div>
 
-            {/* Input */}
             <div className="bg-white border-t border-[#C4A24C]/10 p-3 shrink-0">
               <div className="flex gap-2">
                 <input

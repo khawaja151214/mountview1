@@ -124,21 +124,68 @@ function App() {
       {/* AI Chatbot - Bottom Left */}
       <ChatBot />
 
-      {/* WhatsApp Floating Button - Bottom Right */}
+      {/* WhatsApp Floating Button - Draggable */}
+      <DraggableWhatsApp />
+    </>
+  );
+}
+
+function DraggableWhatsApp() {
+  const [pos, setPos] = useState({ x: 0, y: 0 });
+  const [dragging, setDragging] = useState(false);
+  const [moved, setMoved] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const offset = useRef({ x: 0, y: 0 });
+
+  const onPointerDown = (e: React.PointerEvent) => {
+    if (!ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    offset.current = { x: e.clientX - rect.left, y: e.clientY - rect.top };
+    setDragging(true);
+    setMoved(false);
+    (e.target as HTMLElement).setPointerCapture(e.pointerId);
+  };
+
+  const onPointerMove = (e: React.PointerEvent) => {
+    if (!dragging) return;
+    setMoved(true);
+    const newX = window.innerWidth - e.clientX + offset.current.x - 28;
+    const newY = window.innerHeight - e.clientY + offset.current.y - 28;
+    setPos({
+      x: Math.max(0, Math.min(newX, window.innerWidth - 56)),
+      y: Math.max(0, Math.min(newY, window.innerHeight - 56)),
+    });
+  };
+
+  const onPointerUp = () => setDragging(false);
+
+  const handleClick = (e: React.MouseEvent) => {
+    if (moved) e.preventDefault();
+  };
+
+  return (
+    <div
+      ref={ref}
+      onPointerDown={onPointerDown}
+      onPointerMove={onPointerMove}
+      onPointerUp={onPointerUp}
+      className="fixed z-50 touch-none select-none"
+      style={{ bottom: `${pos.y + 12}px`, right: `${pos.x + 12}px`, cursor: dragging ? "grabbing" : "grab" }}
+      data-testid="whatsapp-draggable"
+    >
       <a
         href="https://wa.me/923468484849"
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:scale-110 transition-transform duration-300 flex items-center justify-center group"
+        onClick={handleClick}
         aria-label="Chat on WhatsApp"
         data-testid="link-whatsapp-float"
       >
-        <MessageSquare className="h-6 w-6" />
-        <span className="max-w-0 overflow-hidden group-hover:max-w-xs group-hover:ml-2 transition-all duration-500 ease-in-out whitespace-nowrap font-medium">
-          Chat with us
-        </span>
+        <div className="w-14 h-14 rounded-full bg-[#25D366] hover:bg-[#20BD5A] text-white flex items-center justify-center shadow-2xl transition-colors duration-200">
+          <MessageSquare className="h-6 w-6 pointer-events-none" />
+        </div>
       </a>
-    </>
+    </div>
   );
 }
 

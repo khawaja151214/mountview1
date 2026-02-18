@@ -550,26 +550,16 @@ export default function Home() {
               Experience luxury near Skardu's top attractions. Join thousands of happy guests who chose Mount View Hotel — the top rated affordable hotel in Skardu.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-6">
-              <Link href="/book">
+            <div className="flex justify-center items-center pt-6">
+              <a href={`https://wa.me/${hotelInfo.whatsapp.replace(/[^0-9]/g, '')}`} target="_blank" rel="noopener noreferrer">
                 <Button 
                   size="lg"
                   className="btn-glow bg-[#C4A24C] hover:bg-[#d4b65e] text-white px-10 py-7 text-lg font-semibold rounded-xl shadow-2xl transition-all duration-300 hover:scale-105"
                   data-testid="cta-book-btn"
                 >
-                  Book Your Room Now
-                  <ArrowRight className="ml-2 w-5 h-5" />
-                </Button>
-              </Link>
-
-              <a href={`https://wa.me/${hotelInfo.whatsapp.replace(/[^0-9]/g, '')}`} target="_blank" rel="noopener noreferrer">
-                <Button 
-                  size="lg"
-                  variant="outline"
-                  className="bg-transparent border-2 border-[#C4A24C] hover:bg-[#C4A24C]/10 text-white px-10 py-7 text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105"
-                >
                   <MessageCircle className="mr-2 w-5 h-5" />
-                  WhatsApp Booking
+                  Book on WhatsApp Now
+                  <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </a>
             </div>

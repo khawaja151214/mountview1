@@ -232,16 +232,16 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Rooms Preview - Luxury Showcase */}
-      <section className="py-24 bg-gradient-to-b from-slate-50 to-white">
+      {/* Rooms Preview */}
+      <section className="py-24 bg-white">
         <div className="container max-w-7xl px-6">
           <motion.div {...fadeInUp} className="text-center mb-16 space-y-4">
-            <span className="inline-block text-amber-600 font-semibold tracking-wider text-sm uppercase">Our Accommodations</span>
-            <h2 className="font-serif text-4xl md:text-5xl font-bold text-slate-900">
-              Comfort Meets Scenic Beauty
+            <span className="inline-block text-[#C4A24C] font-semibold tracking-wider text-sm uppercase">Our Accommodations</span>
+            <h2 className="font-serif text-4xl md:text-5xl font-bold text-[#0E2F2F]">
+              Premium 3 Star Hotel in Skardu with 5 Star Comfort
             </h2>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
-              Choose from our range of thoughtfully designed rooms, each offering mountain views and modern amenities for your perfect Skardu stay
+            <p className="text-lg text-[#0E2F2F]/70 max-w-2xl mx-auto leading-relaxed">
+              From affordable standard rooms to luxury suites — every room at the best hotel in Skardu offers mountain views and modern amenities
             </p>
           </motion.div>
 
@@ -253,26 +253,27 @@ export default function Home() {
                 transition={{ delay: index * 0.1 }}
                 className="group"
               >
-                <Card className="overflow-hidden border-2 hover:border-amber-200 hover:shadow-2xl transition-all duration-300">
+                <Card className="overflow-hidden border-2 border-[#C4A24C]/10 hover:border-[#C4A24C]/40 hover:shadow-2xl transition-all duration-300">
                   <div className="relative h-64 overflow-hidden">
                     <img 
                       src={room.image} 
                       alt={room.imageAlt}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      loading="lazy"
                     />
                     <div className="absolute top-4 right-4 px-4 py-2 rounded-full bg-white/90 backdrop-blur-sm">
-                      <span className="text-sm font-bold text-slate-900">From PKR {room.price.toLocaleString()}</span>
+                      <span className="text-sm font-bold text-[#0E2F2F]">From PKR {room.price.toLocaleString()}</span>
                     </div>
                   </div>
                   <CardContent className="p-6 space-y-4">
                     <div>
-                      <h3 className="font-serif text-xl font-bold text-slate-900 mb-2">{room.type} Room</h3>
-                      <p className="text-slate-600 text-sm mb-3">{room.capacity}</p>
-                      <p className="text-slate-600 line-clamp-2">{room.seoDescription}</p>
+                      <h3 className="font-serif text-xl font-bold text-[#0E2F2F] mb-2">{room.type} Room</h3>
+                      <p className="text-[#0E2F2F]/60 text-sm mb-3">{room.capacity}</p>
+                      <p className="text-[#0E2F2F]/60 line-clamp-2">{room.seoDescription}</p>
                     </div>
                     <div className="flex flex-wrap gap-2">
                       {room.amenities.slice(0, 3).map((amenity, i) => (
-                        <span key={i} className="text-xs px-3 py-1.5 rounded-full bg-amber-50 text-amber-700 font-medium">
+                        <span key={i} className="text-xs px-3 py-1.5 rounded-full bg-[#F2E8D5] text-[#0E2F2F] font-medium">
                           {amenity}
                         </span>
                       ))}
@@ -287,9 +288,9 @@ export default function Home() {
             <Link href="/rooms">
               <Button 
                 size="lg"
-                className="group bg-gradient-to-r from-slate-900 to-slate-800 hover:from-slate-800 hover:to-slate-700 text-white px-8 py-6 text-lg rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300"
+                className="group bg-[#0E2F2F] hover:bg-[#1a4a4a] text-white px-8 py-6 text-lg rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300"
               >
-                View All Rooms
+                View All Rooms &amp; Rates
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>

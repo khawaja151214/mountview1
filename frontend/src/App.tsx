@@ -121,7 +121,10 @@ function App() {
       </Switch>
       <Toaster />
       
-      {/* WhatsApp Floating Button */}
+      {/* AI Chatbot - Bottom Left */}
+      <ChatBot />
+
+      {/* WhatsApp Floating Button - Bottom Right */}
       <a
         href="https://wa.me/923468484849"
         target="_blank"

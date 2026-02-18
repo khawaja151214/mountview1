@@ -2,7 +2,7 @@ import { Switch, Route, useLocation } from "wouter";
 import { MessageSquare } from "lucide-react";
 import { Navbar, Footer } from "@/components/layout/PublicLayout";
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Home from "@/pages/Home";
 import Rooms from "@/pages/Rooms";
 import Restaurant from "@/pages/Restaurant";

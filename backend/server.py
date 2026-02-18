@@ -145,23 +145,48 @@ async def chat_endpoint(req: ChatRequest):
         
         session_id = req.session_id or str(uuid.uuid4())
         
-        # Get or create chat session
-        if session_id not in chat_sessions:
-            chat = LlmChat(
-                api_key=api_key,
-                session_id=session_id,
-                system_message=HOTEL_SYSTEM_PROMPT
-            )
-            chat.with_model("openai", "gpt-4o-mini")
-            chat_sessions[session_id] = chat
+        # Create a fresh chat each time but include last few messages for context
+        chat = LlmChat(
+            api_key=api_key,
+            session_id=session_id,
+            system_message=HOTEL_SYSTEM_PROMPT
+        )
+        chat.with_model("openai", "gpt-4o-mini")
         
-        chat = chat_sessions[session_id]
+        # Add recent conversation history (max 6 messages) for context
+        if session_id in chat_sessions:
+            history = chat_sessions[session_id]
+            for msg in history[-6:]:
+                if msg["role"] == "user":
+                    chat.add_message(UserMessage(text=msg["text"]))
+                else:
+                    chat.messages.append({"role": "assistant", "content": msg["text"]})
+        
         user_msg = UserMessage(text=req.message)
         reply = await chat.send_message(user_msg)
+        
+        # Save to lightweight history
+        if session_id not in chat_sessions:
+            chat_sessions[session_id] = []
+        chat_sessions[session_id].append({"role": "user", "text": req.message})
+        chat_sessions[session_id].append({"role": "assistant", "text": reply})
+        
+        # Keep only last 10 messages per session
+        if len(chat_sessions[session_id]) > 10:
+            chat_sessions[session_id] = chat_sessions[session_id][-10:]
+        
+        # Cleanup old sessions (keep max 100)
+        if len(chat_sessions) > 100:
+            oldest_keys = list(chat_sessions.keys())[:-50]
+            for k in oldest_keys:
+                del chat_sessions[k]
         
         return JSONResponse({"reply": reply, "session_id": session_id})
     except Exception as e:
         logger.error(f"Chat error: {e}")
+        # Reset the session on error
+        if req.session_id and req.session_id in chat_sessions:
+            del chat_sessions[req.session_id]
         return JSONResponse({"reply": "I'm having trouble right now. Please contact our reception at +92 346 8484849 for assistance.", "session_id": req.session_id or ""}, status_code=200)
 
 # Proxy all API requests to Node.js backend

@@ -390,13 +390,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Facilities & Services */}
-      <section className="py-24 bg-slate-900 text-white">
+      {/* Facilities - Best Amenities */}
+      <section className="py-24 bg-[#0E2F2F] text-white">
         <div className="container max-w-7xl px-6">
           <motion.div {...fadeInUp} className="text-center mb-16 space-y-4">
-            <span className="inline-block text-amber-400 font-semibold tracking-wider text-sm uppercase">Our Facilities</span>
+            <span className="inline-block text-[#C4A24C] font-semibold tracking-wider text-sm uppercase">Our Facilities</span>
             <h2 className="font-serif text-4xl md:text-5xl font-bold">
-              Everything You Need for a Perfect Stay
+              Best Family Hotel in Skardu with Modern Amenities
             </h2>
           </motion.div>
 
@@ -409,7 +409,7 @@ export default function Home() {
           >
             {[
               { icon: <Wifi />, title: "Free Wi-Fi", desc: "High-speed internet" },
-              { icon: <Coffee />, title: "Restaurant", desc: "In-house dining" },
+              { icon: <Coffee />, title: "24/7 Restaurant", desc: "Authentic cuisine" },
               { icon: <Car />, title: "Free Parking", desc: "Basement available" },
               { icon: <Shield />, title: "24/7 Security", desc: "Safe environment" },
               { icon: <Clock />, title: "Room Service", desc: "Round the clock" },
@@ -420,57 +420,197 @@ export default function Home() {
               <motion.div
                 key={index}
                 variants={fadeInUp}
-                className="group p-6 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 transition-all duration-300"
+                className="group p-6 rounded-xl bg-white/5 hover:bg-white/10 border border-[#C4A24C]/10 hover:border-[#C4A24C]/30 transition-all duration-300"
               >
-                <div className="w-14 h-14 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-400 mb-4 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-14 h-14 rounded-xl bg-[#C4A24C]/10 flex items-center justify-center text-[#C4A24C] mb-4 group-hover:scale-110 transition-transform duration-300">
                   {React.cloneElement(facility.icon, { className: "w-7 h-7" })}
                 </div>
                 <h3 className="font-semibold text-lg mb-2">{facility.title}</h3>
-                <p className="text-sm text-slate-400">{facility.desc}</p>
+                <p className="text-sm text-white/60">{facility.desc}</p>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
 
-      {/* Final CTA - Booking Section */}
-      <section className="py-24 bg-gradient-to-br from-amber-500 via-amber-600 to-amber-700 text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0djItaDJ2LTJoLTJ6bTAgNGgtMnYyaDJ2LTJ6bTItMmgydjJoLTJ2LTJ6bTAtNGgydjJoLTJ2LTJ6bS0yLTJoLTJ2Mmgydi0yem0yLTJoMnYyaC0ydi0yem0tMi0yaC0ydjJoMnYtMnptMi0yaDJ2MmgtMnYtMnptLTItMmgtMnYyaDJ2LTJ6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-50" />
-        
+      {/* Video Section */}
+      <section className="py-24 bg-white" data-testid="video-section">
+        <div className="container max-w-5xl px-6">
+          <motion.div {...fadeInUp} className="text-center mb-12 space-y-4">
+            <span className="inline-block text-[#C4A24C] font-semibold tracking-wider text-sm uppercase">Virtual Tour</span>
+            <h2 className="font-serif text-4xl md:text-5xl font-bold text-[#0E2F2F]">
+              Experience Luxury at Mount View Hotel Skardu
+            </h2>
+            <p className="text-lg text-[#0E2F2F]/70 max-w-2xl mx-auto">
+              Take a virtual tour of the top rated hotel in Skardu and see why guests choose us
+            </p>
+          </motion.div>
+          <motion.div {...fadeInUp} className="rounded-2xl overflow-hidden shadow-2xl">
+            <video
+              controls
+              poster="/gallery/front-elevation.jpeg"
+              className="w-full aspect-video bg-black"
+              preload="metadata"
+              data-testid="hotel-video"
+            >
+              <source src="https://customer-assets.emergentagent.com/job_c42dbb56-a5a0-4fbe-900e-55f1f85c15cf/artifacts/is2aw3gk_HeyGen%20-%20Video%20Agent.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Guest Reviews Section */}
+      <section className="py-24 bg-[#FAF6EE]" data-testid="reviews-section">
+        <div className="container max-w-7xl px-6">
+          <motion.div {...fadeInUp} className="text-center mb-16 space-y-4">
+            <span className="inline-block text-[#C4A24C] font-semibold tracking-wider text-sm uppercase">Guest Reviews</span>
+            <h2 className="font-serif text-4xl md:text-5xl font-bold text-[#0E2F2F]">
+              Affordable Yet Top Rated Hotel in Skardu
+            </h2>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { name: "Ahmed Khan", from: "Islamabad", rating: 5, text: "The best hotel in Skardu without a doubt! Clean rooms, amazing mountain views, and the staff treated us like family. We booked for 3 nights and extended to 5." },
+              { name: "Sarah & Family", from: "Lahore", rating: 5, text: "We were looking for a family hotel in Skardu and Mount View exceeded all expectations. Kids loved it. So close to Deosai and Satpara Lake. The restaurant food was outstanding!" },
+              { name: "James Wilson", from: "London, UK", rating: 5, text: "Best hotel near Skardu Airport! The luxury rooms rival any 5 star hotel. Perfect location for visiting Shangrila Resort and Upper Kachura Lake. Highly recommend!" }
+            ].map((review, index) => (
+              <motion.div
+                key={index}
+                {...fadeInUp}
+                transition={{ delay: index * 0.1 }}
+              >
+                <Card className="h-full bg-white border-2 border-[#C4A24C]/10 hover:border-[#C4A24C]/30 transition-all duration-300 hover:-translate-y-1">
+                  <CardContent className="p-8 space-y-4">
+                    <div className="flex gap-1">
+                      {Array.from({ length: review.rating }).map((_, i) => (
+                        <Star key={i} className="w-5 h-5 fill-[#C4A24C] text-[#C4A24C]" />
+                      ))}
+                    </div>
+                    <p className="text-[#0E2F2F]/70 leading-relaxed italic">"{review.text}"</p>
+                    <div className="pt-4 border-t border-[#C4A24C]/10">
+                      <p className="font-semibold text-[#0E2F2F]">{review.name}</p>
+                      <p className="text-sm text-[#0E2F2F]/50">{review.from}</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-24 bg-white" data-testid="faq-section">
+        <div className="container max-w-4xl px-6">
+          <motion.div {...fadeInUp} className="text-center mb-16 space-y-4">
+            <span className="inline-block text-[#C4A24C] font-semibold tracking-wider text-sm uppercase">FAQs</span>
+            <h2 className="font-serif text-4xl md:text-5xl font-bold text-[#0E2F2F]">
+              Frequently Asked Questions
+            </h2>
+          </motion.div>
+
+          <motion.div {...fadeInUp} className="space-y-4">
+            {[
+              { q: "Is Mount View Hotel the best hotel in Skardu?", a: "Mount View Hotel is consistently rated as one of the best hotels in Skardu, offering luxury 3 star comfort with 5 star amenities including mountain views, 24/7 restaurant, free parking, and proximity to Skardu Airport and all major tourist destinations." },
+              { q: "How far is Mount View Hotel from Skardu Airport?", a: "Mount View Hotel is just 10 minutes drive from Skardu Airport, making it one of the most conveniently located hotels near Skardu Airport. We offer complimentary airport transfer services." },
+              { q: "Is Mount View Hotel near Deosai National Park?", a: "Yes! Mount View Hotel is the ideal base for visiting Deosai National Park (1.5 hours), Satpara Lake (20 min), Upper Kachura Lake and Shangrila Resort (30 min)." },
+              { q: "What are the room rates at Mount View Hotel?", a: "Room rates start from PKR 4,000 for Standard rooms, PKR 6,000 for Deluxe, PKR 7,000 for Executive, and PKR 10,000-15,000 for Family Suites and King Rooms. All rooms include free Wi-Fi, parking, and mountain views." },
+              { q: "Is Mount View Hotel suitable for families?", a: "Absolutely! As the best family hotel in Skardu, we offer spacious family suites, kid-friendly environment, in-house restaurant, and tour assistance for family-friendly destinations." }
+            ].map((faq, index) => (
+              <details
+                key={index}
+                className="group bg-[#FAF6EE] rounded-xl border border-[#C4A24C]/10 hover:border-[#C4A24C]/30 transition-colors"
+              >
+                <summary className="cursor-pointer p-6 font-serif text-lg font-bold text-[#0E2F2F] list-none flex justify-between items-center">
+                  {faq.q}
+                  <ChevronDown className="w-5 h-5 text-[#C4A24C] group-open:rotate-180 transition-transform duration-300" />
+                </summary>
+                <div className="px-6 pb-6 text-[#0E2F2F]/70 leading-relaxed">{faq.a}</div>
+              </details>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Google Map Section */}
+      <section className="py-24 bg-[#FAF6EE]" data-testid="map-section">
+        <div className="container max-w-7xl px-6">
+          <motion.div {...fadeInUp} className="text-center mb-12 space-y-4">
+            <span className="inline-block text-[#C4A24C] font-semibold tracking-wider text-sm uppercase">Find Us</span>
+            <h2 className="font-serif text-4xl md:text-5xl font-bold text-[#0E2F2F]">
+              Hotel Near Skardu Airport &amp; City Center
+            </h2>
+            <p className="text-lg text-[#0E2F2F]/70">College Road, Skardu, Gilgit-Baltistan, Pakistan</p>
+          </motion.div>
+          <motion.div {...fadeInUp} className="rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3308.5!2d75.633!3d35.297!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sCollege%20Road%2C%20Skardu%2C%20Gilgit-Baltistan!5e0!3m2!1sen!2spk!4v1706000000000"
+              width="100%"
+              height="450"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Mount View Hotel Skardu Location - College Road, Skardu"
+              className="w-full"
+            />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="py-24 bg-[#0E2F2F] text-white relative overflow-hidden">
         <div className="container max-w-4xl px-6 relative z-10">
           <motion.div {...fadeInUp} className="text-center space-y-8">
             <h2 className="font-serif text-4xl md:text-5xl font-bold leading-tight">
-              Ready to Experience Skardu?
+              Book the Best Hotel in Skardu Today
             </h2>
-            <p className="text-xl text-white/90 max-w-2xl mx-auto leading-relaxed">
-              Book your stay at Mount View Hotel Skardu today and create unforgettable memories in the heart of the Karakoram mountains.
+            <p className="text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
+              Experience luxury near Skardu's top attractions. Join thousands of happy guests who chose Mount View Hotel — the top rated affordable hotel in Skardu.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-6">
               <Link href="/book">
                 <Button 
                   size="lg"
-                  className="bg-white text-amber-600 hover:bg-slate-50 px-10 py-7 text-lg font-semibold rounded-xl shadow-2xl hover:shadow-white/50 transition-all duration-300 hover:scale-105"
+                  className="btn-glow bg-[#C4A24C] hover:bg-[#d4b65e] text-white px-10 py-7 text-lg font-semibold rounded-xl shadow-2xl transition-all duration-300 hover:scale-105"
+                  data-testid="cta-book-btn"
                 >
                   Book Your Room Now
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </Link>
 
-              <a href={`tel:${hotelInfo.phone}`}>
+              <a href={`https://wa.me/${hotelInfo.whatsapp.replace(/[^0-9]/g, '')}`} target="_blank" rel="noopener noreferrer">
                 <Button 
                   size="lg"
                   variant="outline"
-                  className="bg-transparent border-2 border-white hover:bg-white/10 text-white px-10 py-7 text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105"
+                  className="bg-transparent border-2 border-[#C4A24C] hover:bg-[#C4A24C]/10 text-white px-10 py-7 text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105"
                 >
-                  <Phone className="mr-2 w-5 h-5" />
-                  {hotelInfo.phone}
+                  <MessageCircle className="mr-2 w-5 h-5" />
+                  WhatsApp Booking
                 </Button>
               </a>
             </div>
           </motion.div>
         </div>
       </section>
+
+      {/* Sticky Floating Book Now Button */}
+      <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3" data-testid="sticky-buttons">
+        <a href={`https://wa.me/${hotelInfo.whatsapp.replace(/[^0-9]/g, '')}`} target="_blank" rel="noopener noreferrer">
+          <div className="w-14 h-14 rounded-full bg-green-500 hover:bg-green-600 flex items-center justify-center shadow-2xl cursor-pointer transition-all duration-300 hover:scale-110">
+            <MessageCircle className="w-7 h-7 text-white" />
+          </div>
+        </a>
+        <Link href="/book">
+          <div className="btn-glow px-5 py-3 rounded-full bg-[#C4A24C] hover:bg-[#d4b65e] text-white font-semibold shadow-2xl cursor-pointer transition-all duration-300 hover:scale-105 text-center text-sm">
+            Book Now
+          </div>
+        </Link>
+      </div>
     </div>
   );
 }

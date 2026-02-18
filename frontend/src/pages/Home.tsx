@@ -160,16 +160,16 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Why Choose Mount View - Premium Section */}
-      <section className="py-24 bg-white">
+      {/* Why Choose Mount View - SEO Section */}
+      <section className="py-24 bg-[#FAF6EE]">
         <div className="container max-w-7xl px-6">
           <motion.div {...fadeInUp} className="text-center mb-16 space-y-4">
-            <span className="inline-block text-amber-600 font-semibold tracking-wider text-sm uppercase">Why Choose Us</span>
-            <h2 className="font-serif text-4xl md:text-5xl font-bold text-slate-900">
-              Experience the Mount View Difference
+            <span className="inline-block text-[#C4A24C] font-semibold tracking-wider text-sm uppercase">Why Choose Us</span>
+            <h2 className="font-serif text-4xl md:text-5xl font-bold text-[#0E2F2F]">
+              Why Mountview is the Best Hotel in Skardu
             </h2>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
-              Discover what makes Mount View Hotel Skardu the preferred choice for travelers seeking comfort, cleanliness, and authentic Skardu hospitality
+            <p className="text-lg text-[#0E2F2F]/70 max-w-2xl mx-auto leading-relaxed">
+              As the top rated hotel in Skardu, we offer luxury 3 star accommodation with 5 star comfort, clean rooms, and unmatched hospitality near all major tourist destinations
             </p>
           </motion.div>
 
@@ -183,33 +183,33 @@ export default function Home() {
             {[
               {
                 icon: <MapPin className="w-10 h-10" />,
-                title: "Prime Location",
-                description: "Strategically located near Skardu Airport, Eidgah, and city center. Easy access to all major tourist destinations including Deosai, Kachura Lake, and Satpara."
+                title: "Hotel Near Skardu Airport",
+                description: "Just 10 minutes from Skardu Airport with complimentary transfers. The most conveniently located luxury hotel near Skardu Airport for easy access to the city and tourist destinations."
               },
               {
                 icon: <Shield className="w-10 h-10" />,
-                title: "Clean & Safe Environment",
-                description: "Meticulously maintained rooms with highest hygiene standards. Family-friendly atmosphere with 24/7 security for your peace of mind."
+                title: "Cleanest Hotel in Skardu",
+                description: "Meticulously maintained rooms with the highest hygiene standards. Recognized as the cleanest hotel in Skardu with family-friendly atmosphere and 24/7 security."
               },
               {
                 icon: <Mountain className="w-10 h-10" />,
-                title: "Breathtaking Mountain Views",
-                description: "Wake up to stunning Karakoram mountain vistas from your room. Experience the serene beauty of Skardu valley right from your window."
+                title: "Luxury Mountain View Hotel",
+                description: "Wake up to stunning Karakoram mountain vistas. Every room at this luxury hotel in Skardu offers breathtaking views of the valley and surrounding peaks."
               },
               {
                 icon: <Utensils className="w-10 h-10" />,
-                title: "Authentic Desi Cuisine",
-                description: "Savor traditional Skardu and Pakistani flavors in our in-house restaurant. Fresh, homemade meals that feel like home."
+                title: "24/7 In-House Restaurant",
+                description: "Authentic Pakistani and Skardu cuisine served around the clock. Sky dining on our rooftop with panoramic mountain views — the best hotel restaurant in Skardu."
               },
               {
                 icon: <Car className="w-10 h-10" />,
                 title: "Free Parking & Transport",
-                description: "Complimentary basement parking for your vehicle. Transport assistance available for local sightseeing and airport transfers."
+                description: "Complimentary basement parking and transport assistance for Deosai National Park, Satpara Lake, Upper Kachura Lake, and Shangrila Resort tours."
               },
               {
                 icon: <Heart className="w-10 h-10" />,
-                title: "Warm Hospitality",
-                description: "Experience genuine Skardu hospitality with our attentive staff. We treat every guest like family, ensuring a memorable stay."
+                title: "Best Family Hotel in Skardu",
+                description: "Spacious family suites, warm Skardu hospitality, and kid-friendly environment make us the best family hotel in Skardu for groups and families."
               }
             ].map((feature, index) => (
               <motion.div
@@ -217,13 +217,13 @@ export default function Home() {
                 variants={fadeInUp}
                 className="group"
               >
-                <Card className="h-full border-2 hover:border-amber-200 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 bg-gradient-to-br from-white to-slate-50">
+                <Card className="h-full border-2 border-[#C4A24C]/10 hover:border-[#C4A24C]/40 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 bg-white">
                   <CardContent className="p-8 space-y-4">
-                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-100 to-amber-50 flex items-center justify-center text-amber-600 group-hover:scale-110 transition-transform duration-300">
+                    <div className="w-16 h-16 rounded-2xl bg-[#0E2F2F]/5 flex items-center justify-center text-[#C4A24C] group-hover:scale-110 transition-transform duration-300">
                       {feature.icon}
                     </div>
-                    <h3 className="font-serif text-2xl font-bold text-slate-900">{feature.title}</h3>
-                    <p className="text-slate-600 leading-relaxed">{feature.description}</p>
+                    <h3 className="font-serif text-2xl font-bold text-[#0E2F2F]">{feature.title}</h3>
+                    <p className="text-[#0E2F2F]/60 leading-relaxed">{feature.description}</p>
                   </CardContent>
                 </Card>
               </motion.div>

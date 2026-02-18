@@ -63,7 +63,7 @@ export default function ChatBot() {
             data-testid="chatbot-toggle"
           >
             <MessageSquare className="w-5 h-5 text-[#C4A24C]" />
-            <span className="text-sm font-medium hidden sm:inline">Chat with us</span>
+            <span className="text-sm font-medium hidden sm:inline">Chat with our AI Assistant</span>
           </motion.button>
         )}
       </AnimatePresence>

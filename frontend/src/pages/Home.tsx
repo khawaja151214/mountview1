@@ -6,7 +6,7 @@ import React from "react";
 import { 
   ArrowRight, Wifi, Coffee, Mountain, Car, Shield, Heart, 
   MapPin, Phone, MessageCircle, Star, Check, Users, Utensils,
-  Clock, Award, TrendingUp, Home as HomeIcon, Sparkles
+  Clock, Award, TrendingUp, Home as HomeIcon, Sparkles, ChevronDown
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import PremiumGallery from "@/components/PremiumGallery";
